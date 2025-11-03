@@ -1,0 +1,29 @@
+.container {
+  background-color: #fffef2;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  line-height: 0;
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+.main > * {
+  width: 100%;
+  max-width: 1220px;
+  padding: 0 162px;
+  box-sizing: border-box;
+}

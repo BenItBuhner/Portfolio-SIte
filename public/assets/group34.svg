@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 501 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 34">
+<g id="Rectangle 377">
+<path d="M214.385 0H500.233L477.031 52.9003H191.184L214.385 0Z" fill="var(--fill-0, #FFFEED)"/>
+<path d="M214.385 0H500.233L477.031 52.9003H191.184L214.385 0Z" fill="var(--fill-1, black)" fill-opacity="0.1"/>
+<path d="M498.889 0.87793L476.457 52.0225H192.528L214.959 0.87793H498.889Z" stroke="var(--stroke-0, black)" stroke-opacity="0.1" stroke-width="1.75653"/>
+</g>
+<g id="Rectangle 379">
+<path d="M17.5653 0H37.941L20.3757 52.6958H0L17.5653 0Z" fill="var(--fill-0, #E1FEFF)"/>
+<path d="M17.5653 0H37.941L20.3757 52.6958H0L17.5653 0Z" fill="var(--fill-1, black)" fill-opacity="0.1"/>
+<path d="M36.7227 0.87793L19.7432 51.8174H1.21875L18.1982 0.87793H36.7227Z" stroke="var(--stroke-0, black)" stroke-opacity="0.1" stroke-width="1.75653"/>
+</g>
+</g>
+</svg>
