@@ -23,7 +23,7 @@
   font-family: var(--font-geist-sans);
   font-weight: 100;
   line-height: normal;
-  color: #0d0c4c;
+  color: var(--color-text-primary);
   font-size: 30px;
   white-space: pre;
   z-index: 1;
@@ -37,7 +37,7 @@
   font-weight: 200;
   line-height: normal;
   font-size: 20px;
-  color: rgba(5, 4, 68, 0.5);
+  color: var(--color-accent-soft);
   white-space: pre;
   z-index: 1;
   margin: 0;

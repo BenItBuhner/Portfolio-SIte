@@ -42,9 +42,9 @@ const PROJECTS = [
 const OUTRO_TEXT =
   "These are the core and most significant projects I have made in recent time and aim to do even greater.";
 
-export default function Projects() {
+export default function Projects({ className }: { className?: string }) {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className || ""}`}>
       <div className={styles.headerWrapper}>
         <SectionHeader
           title="Projects & Models"

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
+import ThemeToggle from "./ThemeToggle";
 import styles from "./HamburgerMenu.module.css";
 
 export default function HamburgerMenu() {
@@ -108,6 +109,15 @@ export default function HamburgerMenu() {
               >
                 Contact me
               </Link>
+              <div
+                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
+                style={{
+                  transitionDelay: isVisible ? '0.5s' : '0s',
+                  pointerEvents: isVisible ? 'auto' : 'none'
+                }}
+              >
+                <ThemeToggle />
+              </div>
             </nav>
           </>,
           document.body

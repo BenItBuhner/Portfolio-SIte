@@ -6,8 +6,8 @@
   gap: 5px;
   width: 40px;
   height: 40px;
-  background-color: rgb(230, 229, 213);
-  border: 1.75653px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--color-surface);
+  border: 1.75653px solid var(--color-border-subtle);
   border-radius: 6px;
   cursor: pointer;
   padding: 8px;
@@ -19,13 +19,13 @@
 }
 
 .hamburgerButton:hover {
-  background-color: rgba(230, 229, 213, 0.9);
+  background-color: var(--color-surface-subtle);
 }
 
 .hamburgerLine {
   width: 20px;
   height: 2px;
-  background-color: #0d0c4c;
+  background-color: var(--color-accent);
   transition: all 0.3s ease;
   border-radius: 1px;
   transform-origin: center;
@@ -49,7 +49,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(255, 254, 242, 0.8);
+  background-color: var(--color-overlay-bg);
   backdrop-filter: blur(8px);
   z-index: 25;
   display: block;
@@ -93,11 +93,11 @@
   font-family: var(--font-geist-sans);
   font-weight: 200;
   font-size: 20px;
-  color: rgba(5, 4, 68, 0.7);
+  color: var(--color-nav-muted);
   text-decoration: none;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.2s ease, color 0.2s ease;
   white-space: nowrap;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--color-border-subtle);
   width: 100%;
   box-sizing: border-box;
   text-align: left;
@@ -115,8 +115,8 @@
 }
 
 .menuLink:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: rgba(5, 4, 68, 0.9);
+  background-color: var(--color-accent-muted);
+  color: var(--color-nav-hover);
 }
 
 @media (max-width: 1024px) {
@@ -141,5 +141,11 @@
   .hamburgerButton {
     display: flex;
   }
+}
+
+/* Theme toggle in mobile menu */
+.menuLink .theme-toggle-btn {
+  margin: 0 auto;
+  justify-self: center;
 }
 

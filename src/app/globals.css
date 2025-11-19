@@ -1,8 +1,164 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffef2;
-  --foreground: #0d0c4c;
+  /* ===== THEME TOKENS =====
+  Semantic color system for light/dark theme support.
+  Each token maps to a specific usage pattern across the design system.
+
+  USAGE:
+  - Page backgrounds: --color-page-bg
+  - Text hierarchy: --color-text-primary, --color-text-secondary, --color-text-muted
+  - Surface elevations: --color-surface (cards, buttons), --color-surface-subtle (secondary surfaces)
+  - Borders: --color-border-subtle (soft borders), --color-border-strong (emphasized borders)
+  - Accent colors: --color-accent (primary navy), --color-accent-soft (muted navy), --color-accent-muted (very muted navy)
+  - Navigation: --color-nav-muted, --color-nav-hover
+  - Gradients: --color-gradient-strong (10% opacity), --color-gradient-soft (5% opacity)
+  - Special contexts: header/footer backgrounds, avatar gradients, chip colors, SVG fills
+  */
+
+  /* Page and structural */
+  --color-page-bg: #fffef2;
+  --color-header-bg: #fffef2;
+  --color-footer-bg: #fffef2;
+  --color-overlay-bg: rgba(255, 254, 242, 0.8);
+
+  /* Text hierarchy */
+  --color-text-primary: #0d0c4c;
+  --color-text-secondary: rgba(13, 12, 76, 0.5);
+  --color-text-muted: rgba(13, 12, 76, 0.5);
+
+  /* Surface elevations */
+  --color-surface: rgb(230, 229, 213);
+  --color-surface-subtle: rgb(230, 229, 213);
+
+  /* Borders */
+  --color-border-subtle: rgba(0, 0, 0, 0.1);
+  --color-border-strong: rgba(13, 12, 76, 0.1);
+
+  /* Accent colors (navy-based) */
+  --color-accent: #0d0c4c;
+  --color-accent-soft: rgba(13, 12, 76, 0.5);
+  --color-accent-muted: rgba(13, 12, 76, 0.05);
+
+  /* Navigation */
+  --color-nav-muted: rgba(5, 4, 68, 0.5);
+  --color-nav-hover: rgba(5, 4, 68, 0.8);
+
+  /* Shadows */
+  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Gradients */
+  --color-gradient-strong: rgba(13, 12, 76, 0.1);
+  --color-gradient-soft: rgba(13, 12, 76, 0.05);
+
+  /* Special contexts */
+  --color-avatar-surface: rgb(230, 229, 213);
+  --color-avatar-surface-soft: rgba(230, 229, 213, 0.8);
+  --color-chip-bg: rgba(13, 12, 76, 0.05);
+  --color-chip-border: rgba(13, 12, 76, 0.1);
+  --color-overlay-fade-start: var(--color-page-bg);
+
+  /* Header image / fades */
+  --header-bg-filter: none;
+  --header-bg-opacity: 1;
+  --color-header-fade-strong: rgba(255, 254, 242, 0.8);
+  --color-header-fade-medium: rgba(255, 254, 242, 0.4);
+  --color-header-fade-transparent: rgba(255, 254, 242, 0);
+
+  /* Tag surface (header nav background) – match card borders/surfaces */
+  --color-tag-surface: var(--color-surface);
+  --color-tag-border: var(--color-border-subtle);
+  --color-tag-shadow: rgba(0, 0, 0, 0.12);
+
+  /* Section header accent colors (left mini blocks) - light theme */
+  --color-accent-cyan: #E1FEFF;
+  --color-accent-purple: #F6E1FF;
+  --color-accent-peach: #FFEBE1;
+  --color-accent-green: #E1FFE4;
+  --color-accent-pink: #FFE1E7;
+
+  /* Legacy compatibility - map old vars to new semantic tokens */
+  --background: var(--color-page-bg);
+  --foreground: var(--color-text-primary);
+  --side-padding: 162px;
+  --cream-bg: var(--color-surface);
+  --border-color: var(--color-border-subtle);
+  --navy: var(--color-accent);
+  --navy-muted: var(--color-accent-soft);
+}
+
+/* ===== DARK THEME OVERRIDES ===== */
+:root[data-theme="dark"] {
+  /* Page and structural - invert to dark */
+  --color-page-bg: #0a0a1a;
+  --color-header-bg: #0a0a1a;
+  --color-footer-bg: #0a0a1a;
+  --color-overlay-bg: rgba(10, 10, 26, 0.8);
+
+  /* Text hierarchy - near-white primary, lighter secondary */
+  --color-text-primary: #f8f8f2;
+  --color-text-secondary: rgba(248, 248, 242, 0.7);
+  --color-text-muted: rgba(248, 248, 242, 0.5);
+
+  /* Surface elevations - dark surfaces above background */
+  --color-surface: #1a1a3a;
+  --color-surface-subtle: #1a1a3a;
+
+  /* Borders - light instead of dark */
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(248, 248, 242, 0.2);
+
+  /* Accent colors - keep navy hue but lighten for contrast */
+  --color-accent: #8b87ea;
+  --color-accent-soft: rgba(139, 135, 234, 0.7);
+  --color-accent-muted: rgba(139, 135, 234, 0.1);
+
+  /* Navigation - light variants */
+  /* In dark mode, bias nav links toward the accent palette for consistency */
+  --color-nav-muted: rgba(139, 135, 234, 0.7);
+  --color-nav-hover: rgba(100, 95, 200, 0.9);
+
+  /* Shadows - lighter for dark theme */
+  --shadow-elevated: 0 4px 12px rgba(255, 255, 255, 0.1);
+
+  /* Gradients - reversed contrast for dark backgrounds */
+  --color-gradient-strong: rgba(139, 135, 234, 0.15);
+  --color-gradient-soft: rgba(139, 135, 234, 0.08);
+
+  /* Special contexts - dark-adapted */
+  --color-avatar-surface: #1a1a3a;
+  --color-avatar-surface-soft: rgba(26, 26, 58, 0.8);
+  --color-chip-bg: rgba(139, 135, 234, 0.1);
+  --color-chip-border: rgba(139, 135, 234, 0.2);
+
+  /* Tag surface in dark mode – share the same surface/border as cards */
+  --color-tag-surface: var(--color-surface);
+  --color-tag-border: var(--color-border-subtle);
+  --color-tag-shadow: rgba(0, 0, 0, 0.6);
+
+  /* Section header accent colors (left mini blocks) - dark theme (dimmed but recognizable) */
+  --color-accent-cyan: rgba(225, 254, 255, 0.4);
+  --color-accent-purple: rgba(246, 225, 255, 0.4);
+  --color-accent-peach: rgba(255, 235, 225, 0.4);
+  --color-accent-green: rgba(225, 255, 228, 0.4);
+  --color-accent-pink: rgba(255, 225, 231, 0.4);
+
+  /* Header image / fades - tuned for dark background */
+  --header-bg-filter: brightness(0.35) contrast(1.15);
+  /* In dark mode, hide the noisy header image and rely on flat color + subtle fade */
+  --header-bg-opacity: 0;
+  /* Match light-mode fade curve (0.8 → 0.4 → 0) but with dark color */
+  --color-header-fade-strong: rgba(10, 10, 26, 0.8);
+  --color-header-fade-medium: rgba(10, 10, 26, 0.4);
+  --color-header-fade-transparent: rgba(10, 10, 26, 0);
+
+  /* Tag SVG image */
+  --tag-image-filter: brightness(0.4) contrast(1.35);
+
+  /* SVG asset fills - dark theme variants */
+  --color-tag-fill-main: #1a1a3a;
+  --color-tag-fill-accent: #8b87ea;
+  --color-tag-stroke-subtle: rgba(248, 248, 242, 0.3);
 }
 
 @theme inline {
@@ -12,6 +168,367 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ===== GLOBAL UTILITY CLASSES =====
+
+USAGE GUIDE:
+- .page-container: Main page wrapper with background, centering, and full height
+- .page-main: Content container with responsive padding and max-width
+- .btn-primary / .btn-secondary: Consistent button styling with hover effects
+- .btn-arrow: Arrow icon for buttons (use inside btn-primary/btn-secondary)
+- .card: Reusable card component with hover effects
+- .card-placeholder: Placeholder content for cards
+- .header-wrapper: Flex container for title/subtitle headers (like overview page)
+- .header-title: Large title text (font-weight: 100)
+- .header-subtitle: Smaller subtitle text (font-weight: 300)
+- .text-title-light: Light title typography
+- .text-title-regular: Regular title typography
+- .text-body: Body text typography
+
+EXAMPLE USAGE:
+<div className="page-container">
+  <main className="page-main">
+    <div className="header-wrapper">
+      <h1 className="header-title">Page Title</h1>
+      <p className="header-subtitle">Subtitle text</p>
+    </div>
+    <div className="card">
+      <div className="card-placeholder">Content here</div>
+    </div>
+  </main>
+</div>
+*/
+
+/* Page Layout */
+.page-container {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  line-height: 0;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  flex: 1;
+}
+
+.page-main > * {
+  width: 100%;
+  max-width: 1220px;
+  padding: 0 var(--side-padding);
+  box-sizing: border-box;
+}
+
+/* Typography */
+.text-title-light {
+  font-family: var(--font-geist-sans);
+  font-weight: 100;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: 0;
+}
+
+.text-title-regular {
+  font-family: var(--font-geist-sans);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--navy-muted);
+  margin: 0;
+}
+
+.text-body {
+  font-family: var(--font-geist-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--navy);
+  margin: 0;
+}
+
+/* Navigation Links */
+.nav-link {
+  color: var(--color-nav-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-nav-hover);
+}
+
+/* Arrow Icons */
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+/* Theme Toggle */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: var(--color-nav-muted);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--color-nav-hover);
+  background-color: transparent;
+}
+
+.card:hover .arrow-icon {
+  opacity: 1;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 20px;
+  background-color: var(--cream-bg);
+  border: 1.75653px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--navy);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.btn-arrow {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover .btn-arrow,
+.btn-secondary:hover .btn-arrow {
+  opacity: 1;
+}
+
+/* Cards/Components */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cream-bg);
+  border: 1.75653px solid var(--border-color);
+  border-radius: 6px;
+  padding: 32px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  color: rgba(13, 12, 76, 0.4);
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* Headers */
+.header-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  gap: 16px;
+}
+
+.header-title {
+  font-family: var(--font-geist-sans);
+  font-weight: 100;
+  font-size: 46px;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: 0;
+  position: relative;
+}
+
+.header-subtitle {
+  font-family: var(--font-geist-sans);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--navy-muted);
+  margin: 0;
+  position: relative;
+  text-align: right;
+  min-width: fit-content;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .page-main > * {
+    padding: 0 80px;
+  }
+
+  .header-title {
+    font-size: 42px;
+  }
+
+  .header-subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page-main > * {
+    padding: 0 40px;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .header-title {
+    font-size: 36px;
+  }
+
+  .header-subtitle {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-main > * {
+    padding: 0 24px;
+  }
+
+  .header-title {
+    font-size: 36px;
+  }
+
+  .header-subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-main > * {
+    padding: 0 20px;
+  }
+
+  .header-title {
+    font-size: 32px;
+  }
+
+  .header-subtitle {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .card-placeholder {
+    height: 100px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Keyframe definitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Staggered animation delays */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+.animate-delay-900 { animation-delay: 0.9s; }
+.animate-delay-1000 { animation-delay: 1.0s; }
+
+/* ===== LEGACY BODY STYLES ===== */
 body {
   background: var(--background);
   color: var(--foreground);

@@ -20,9 +20,9 @@ const EDUCATION_ITEMS = [
 const OUTRO_TEXT =
   "This may sound immensely ambiguous, but I have already found I've been able to take five three-point classes concurrently and still have time for a full-time job; I want to get ahead and really make a difference where it matters.";
 
-export default function Education() {
+export default function Education({ className }: { className?: string }) {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className || ""}`}>
       <div className={styles.headerWrapper}>
         <SectionHeader
           title="Education"

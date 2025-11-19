@@ -40,9 +40,9 @@ const SKILLS = [
   },
 ];
 
-export default function Skills() {
+export default function Skills({ className }: { className?: string }) {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className || ""}`}>
       <div className={styles.headerWrapper}>
         <SectionHeader
           title="Skills"

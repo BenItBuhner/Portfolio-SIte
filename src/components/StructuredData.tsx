@@ -1,0 +1,167 @@
+import { Project } from '@/data/projects';
+import { Blog } from '@/data/blogs';
+
+interface BlogStructuredDataProps {
+  blog: Blog;
+}
+
+interface ProjectStructuredDataProps {
+  project: Project;
+}
+
+export function BlogStructuredData({ blog }: BlogStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blog.title,
+    "description": blog.excerpt,
+    "author": {
+      "@type": "Person",
+      "name": "Bennett Buhner",
+      "url": "https://bennettbuhner.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Bennett Buhner",
+      "url": "https://bennettbuhner.com"
+    },
+    "datePublished": blog.date,
+    "dateModified": blog.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://bennettbuhner.com/blog/${blog.slug.split('/').pop()}`
+    },
+    "url": `https://bennettbuhner.com/blog/${blog.slug.split('/').pop()}`,
+    "keywords": blog.tags.join(", "),
+    "articleSection": "Technology",
+    "wordCount": blog.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
+    "timeRequired": `PT${blog.readTime.split(' ')[0]}M`,
+    "image": blog.image || "https://bennettbuhner.com/og-image.png",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData),
+      }}
+    />
+  );
+}
+
+export function ProjectStructuredData({ project }: ProjectStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": project.title,
+    "description": project.description,
+    "author": {
+      "@type": "Person",
+      "name": "Bennett Buhner",
+      "url": "https://bennettbuhner.com"
+    },
+    "codeRepository": project.github,
+    "programmingLanguage": project.tech.join(", "),
+    "url": `https://bennettbuhner.com/projects/${project.id}`,
+    "dateCreated": new Date().toISOString(),
+    "license": "https://opensource.org/licenses/MIT",
+    "keywords": project.tech.join(", "),
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData),
+      }}
+    />
+  );
+}
+
+export function WebsiteStructuredData() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bennett Buhner - Portfolio",
+    "description": "AI Engineer, Developer, Machine Learning Enthusiast. Pushing the boundaries of generative AI/RL, design, and tech.",
+    "url": "https://bennettbuhner.com",
+    "author": {
+      "@type": "Person",
+      "name": "Bennett Buhner",
+      "url": "https://bennettbuhner.com",
+      "sameAs": [
+        "https://github.com/BenItBuhner",
+        "https://x.com/BennettBuhner",
+        "https://www.linkedin.com/in/bennett-buhner-7515921a6/"
+      ]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Bennett Buhner"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://bennettbuhner.com/projects?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData),
+      }}
+    />
+  );
+}
+
+export function PersonStructuredData() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bennett Buhner",
+    "jobTitle": "AI Engineer",
+    "description": "AI Engineer, Developer, Machine Learning Enthusiast. Pushing the boundaries of generative AI/RL, design, and tech.",
+    "url": "https://bennettbuhner.com",
+    "image": "https://bennettbuhner.com/og-image.png",
+    "sameAs": [
+      "https://github.com/BenItBuhner",
+      "https://x.com/BennettBuhner",
+      "https://www.linkedin.com/in/bennett-buhner-7515921a6/"
+    ],
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Reinforcement Learning",
+      "Generative AI",
+      "Software Development",
+      "Python",
+      "FastAPI",
+      "PyTorch",
+      "TypeScript",
+      "React"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Adrian High School",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Adrian",
+        "addressRegion": "MN",
+        "addressCountry": "US"
+      }
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData),
+      }}
+    />
+  );
+}

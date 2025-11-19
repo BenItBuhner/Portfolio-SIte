@@ -16,9 +16,9 @@ const EXPERIENCE_ITEMS = [
   },
 ];
 
-export default function Experience() {
+export default function Experience({ className }: { className?: string }) {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${className || ""}`}>
       <div className={styles.headerWrapper}>
         <SectionHeader
           title="Experience"

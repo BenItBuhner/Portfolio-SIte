@@ -19,7 +19,7 @@
   margin-left: 0.062px;
   margin-top: 20px;
   position: relative;
-  color: #0d0c4c;
+  color: var(--color-text-primary);
   font-size: 18px;
   width: 100%;
   max-width: 900px;

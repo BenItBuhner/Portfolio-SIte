@@ -9,22 +9,22 @@ import styles from "./page.module.css";
 
 export default function OverviewPage() {
   return (
-    <div className={styles.container}>
-      <Header />
-      <main className={styles.main}>
-        <section className={styles.overviewHeader}>
-          <div className={styles.headerWrapper}>
-            <h1 className={styles.overviewTitle}>Overview</h1>
-            <p className={styles.overviewSubtitle}>About Me • Experience • Projects</p>
+    <div className="page-container">
+      <Header className="animate-fade-in" />
+      <main className="page-main">
+        <section className="animate-fade-in-up animate-delay-200">
+          <div className="header-wrapper">
+            <h1 className="header-title">Overview</h1>
+            <p className="header-subtitle">About Me • Experience • Projects</p>
           </div>
         </section>
-        <Summary />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
+        <Summary className="animate-fade-in-up animate-delay-300" />
+        <Skills className="animate-fade-in-up animate-delay-400" />
+        <Projects className="animate-fade-in-up animate-delay-500" />
+        <Experience className="animate-fade-in-up animate-delay-600" />
+        <Education className="animate-fade-in-up animate-delay-700" />
       </main>
-      <Footer />
+      <Footer className="animate-fade-in animate-delay-800" />
     </div>
   );
 }
