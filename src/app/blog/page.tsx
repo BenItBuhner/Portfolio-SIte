@@ -87,11 +87,10 @@ export default function BlogPage() {
                   <button
                     onClick={() => {
                       setSearchQuery("");
-                      setSelectedTag("All");
                     }}
                     className={styles.clearFilters}
                   >
-                    Clear filters
+                    Clear search
                   </button>
                 </div>
               )}
