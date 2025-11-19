@@ -83,7 +83,7 @@ export default function BlogPage() {
                 ))
               ) : (
                 <div className={styles.noResults}>
-                  <p>Nothing here... yet!</p>
+                  <p>Big things are coming... soon!</p>
                   <button
                     onClick={() => {
                       setSearchQuery("");

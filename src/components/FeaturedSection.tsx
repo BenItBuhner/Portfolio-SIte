@@ -122,7 +122,7 @@ export default function FeaturedSection({ className }: { className?: string }) {
               ))
             ) : (
               <div className={styles.emptyState}>
-                <p>Nothing here... yet!</p>
+                <p>Big things are coming... soon!</p>
               </div>
             )}
           </div>
