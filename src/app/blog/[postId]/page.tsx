@@ -16,7 +16,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
   return (
     <div className="page-container">
       <Header />
-      <BlogStructuredData blog={blog} />
+      {blog && <BlogStructuredData blog={blog} />}
       <main className="page-main">
         <section className={styles.page}>
           {blog ? (
