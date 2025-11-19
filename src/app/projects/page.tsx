@@ -86,11 +86,10 @@ export default function ProjectsPage() {
                   <button
                     onClick={() => {
                       setSearchQuery("");
-                      setSelectedCategory("All");
                     }}
                     className={styles.clearFilters}
                   >
-                    Clear filters
+                    Clear search
                   </button>
                 </div>
               )}
