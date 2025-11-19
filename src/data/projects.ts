@@ -9,6 +9,7 @@ export interface Project {
 }
 
 const projects: Project[] = [
+  /*
   {
     id: 1,
     title: "Athena 1 Recursive",
@@ -63,6 +64,7 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/portfolio-site",
     demo: null
   }
+  */
 ];
 
 export function getAllProjects(): Project[] {
