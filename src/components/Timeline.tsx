@@ -4,14 +4,14 @@ import { useMemo, useState } from "react";
 import styles from "./Timeline.module.css";
 import { getTimeline, TimelineEntry } from "@/data/timeline";
 
-const FILTERS: Array<typeof TimelineEntry | string> = [
+const FILTERS: string[] = [
   "All",
   "Experience",
   "Education",
   "Project",
   "Open Source",
   "Other",
-] as any;
+];
 
 export default function Timeline({ className }: { className?: string }) {
   const all = getTimeline();
