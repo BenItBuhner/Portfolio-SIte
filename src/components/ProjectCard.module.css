@@ -21,8 +21,7 @@
 }
 
 .projectCard.comingSoon:hover {
-  transform: none;
-  box-shadow: none;
+  transform: translateY(0);
 }
 
 .projectImage {
