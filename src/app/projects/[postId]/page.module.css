@@ -79,3 +79,42 @@
     font-size: 16px;
   }
 }
+
+.comingSoonMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 20px;
+}
+
+.comingSoonIcon {
+  width: 80px;
+  height: 80px;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.comingSoonIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comingSoonMessage h2 {
+  font-family: var(--font-geist-sans);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.comingSoonMessage p {
+  font-family: var(--font-geist-sans);
+  font-size: 16px;
+  color: var(--color-accent-soft);
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.6;
+}

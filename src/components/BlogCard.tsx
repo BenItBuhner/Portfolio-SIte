@@ -9,6 +9,7 @@ interface Blog {
   readTime: string;
   tags: string[];
   slug: string;
+  comingSoon?: boolean;
 }
 
 interface BlogCardProps {
@@ -28,11 +29,16 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
   const slugFromProp = (blog.slug || "").replace(/^\/+|\/+$/g, "").split("/").pop();
   const slugSegment = slugFromProp || slugify(blog.title) || String(blog.id);
   return (
-    <article className={`${styles.blogCard} ${className || ""}`}>
+    <article className={`${styles.blogCard} ${className || ""} ${blog.comingSoon ? styles.comingSoon : ""}`}>
       <div className={styles.blogImage}>
         <div className={styles.imagePlaceholder}>
           Blog Image
         </div>
+        {blog.comingSoon && (
+          <div className={styles.comingSoonBadge}>
+            Coming Soon
+          </div>
+        )}
       </div>
 
       <div className={styles.blogContent}>
@@ -63,20 +69,37 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
             ))}
           </div>
 
-          <Link href={`/blog/${slugSegment}`} className={styles.readMoreLink}>
-            <span>Read More</span>
-            <svg
-              className={styles.arrowIcon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </Link>
+          {blog.comingSoon ? (
+            <span className={styles.disabledLink}>
+              <span>Coming Soon</span>
+              <svg
+                className={styles.arrowIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </span>
+          ) : (
+            <Link href={`/blog/${slugSegment}`} className={styles.readMoreLink}>
+              <span>Read More</span>
+              <svg
+                className={styles.arrowIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </Link>
+          )}
         </div>
       </div>
     </article>

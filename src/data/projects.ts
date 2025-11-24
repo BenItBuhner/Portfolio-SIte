@@ -6,6 +6,7 @@ export interface Project {
   github: string;
   demo: string | null;
   slug?: string; // optional; primary key is id for projects
+  comingSoon?: boolean; // If true, the project is marked as coming soon and page is not accessible
 }
 
 const projects: Project[] = [

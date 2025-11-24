@@ -8,6 +8,7 @@ export interface Blog {
   tags: string[];
   slug: string; // e.g. "/blog/building-agentic-systems"
   image?: string; // Optional header image URL
+  comingSoon?: boolean; // If true, the blog is marked as coming soon and page is not accessible
 }
 
 const blogs: Blog[] = [
