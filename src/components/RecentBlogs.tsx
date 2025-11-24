@@ -91,20 +91,34 @@ export default function RecentBlogs({ className }: { className?: string }) {
           <div className={styles.blogContent} ref={scrollContainerRef}>
             {blogPosts.length > 0 ? (
               blogPosts.map((post) => (
-                <div key={post.id} className="card">
+                <div key={post.id} className={`card ${post.comingSoon ? styles.comingSoon : ""}`}>
                   <div className={styles.blogCard}>
+                    {post.comingSoon && (
+                      <div className={styles.comingSoonBadge}>
+                        Coming Soon
+                      </div>
+                    )}
                     <div className={styles.blogMeta}>
                       <span className={styles.blogDate}>{post.date}</span>
                       <span className={styles.blogReadTime}>{post.readTime}</span>
                     </div>
                     <h3 className={styles.blogTitle}>{post.title}</h3>
                     <p className={styles.blogExcerpt}>{post.excerpt}</p>
-                    <Link href={`/blog/${post.id}`} className={styles.blogLink}>
-                      Read More
-                      <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </Link>
+                    {post.comingSoon ? (
+                      <span className={styles.disabledLink}>
+                        Coming Soon
+                        <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                    ) : (
+                      <Link href={`/blog/${post.id}`} className={styles.blogLink}>
+                        Read More
+                        <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))

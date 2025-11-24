@@ -92,11 +92,16 @@ export default function FeaturedSection({ className }: { className?: string }) {
           <div className={styles.featuredContent} ref={scrollContainerRef}>
             {featuredProjects.length > 0 ? (
               featuredProjects.map((project) => (
-                <Link key={project.id} href="/projects" className={styles.featuredCard}>
+                <Link key={project.id} href="/projects" className={`${styles.featuredCard} ${project.comingSoon ? styles.comingSoon : ""}`}>
                   <div className={styles.featuredImage}>
                     <div className={styles.imagePlaceholder}>
                       Project Image
                     </div>
+                    {project.comingSoon && (
+                      <div className={styles.comingSoonBadge}>
+                        Coming Soon
+                      </div>
+                    )}
                   </div>
                   <div className={styles.featuredCardContent}>
                     <div className={styles.featuredCardHeader}>

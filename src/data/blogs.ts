@@ -12,7 +12,29 @@ export interface Blog {
 }
 
 const blogs: Blog[] = [
-  // Blog posts will be added here
+  // Example blog with coming soon state for testing
+  {
+    id: 1,
+    title: "Building Scalable AI Agents with MCP",
+    excerpt: "A deep dive into building scalable AI agents using the Model Context Protocol. Learn best practices and implementation strategies.",
+    content: "",
+    date: "2025-01-15T00:00:00.000Z",
+    readTime: "8 min read",
+    tags: ["AI", "MCP", "Agents", "Tutorial"],
+    slug: "/blog/building-scalable-ai-agents",
+    comingSoon: true
+  },
+  // Regular blog example (not coming soon)
+  {
+    id: 2,
+    title: "My Journey into AI Development",
+    excerpt: "Exploring how I got started in AI development and the lessons learned along the way.",
+    content: "<p>This is where the full blog content would go...</p>",
+    date: "2024-11-20T00:00:00.000Z",
+    readTime: "5 min read",
+    tags: ["AI", "Career", "Development"],
+    slug: "/blog/my-journey-into-ai"
+  }
 ];
 
 export function getAllBlogs(): Blog[] {
