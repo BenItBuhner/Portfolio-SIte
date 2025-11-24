@@ -69,12 +69,79 @@
   display: none;
 }
 
-.blogContent :global(.card) {
+.blogCard {
   flex: 0 0 auto;
   min-width: 400px;
   max-width: 400px;
-  min-height: 300px;
-  height: 300px;
+  min-height: 420px;
+  background-color: var(--color-surface);
+  border: 1.75653px solid var(--color-border-subtle);
+  border-radius: 8px;
+  padding: 0;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.blogCard.comingSoon {
+  opacity: 0.85;
+}
+
+.blogCard.comingSoon:hover {
+  transform: translateY(0);
+}
+
+.blogImage {
+  height: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-gradient-strong) 0%, var(--color-gradient-soft) 100%);
+  color: var(--color-accent);
+  font-family: var(--font-geist-sans);
+  font-weight: 500;
+  font-size: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.comingSoonBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--font-geist-sans);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-elevated);
+  z-index: 10;
+}
+
+.blogCardContent {
+  height: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
 }
 
 .fadeLeft,
@@ -138,35 +205,6 @@
   opacity: 1;
 }
 
-.blogCard {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-}
-
-.comingSoon .blogCard {
-  opacity: 0.85;
-}
-
-.comingSoonBadge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: var(--color-accent);
-  color: var(--color-surface);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-family: var(--font-geist-sans);
-  font-weight: 600;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: var(--shadow-elevated);
-  z-index: 10;
-}
-
 .blogMeta {
   display: flex;
   align-items: center;
@@ -182,7 +220,7 @@
 }
 
 .blogTitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--navy);
   line-height: 1.4;
@@ -202,9 +240,14 @@
 
 .blogExcerpt {
   color: var(--navy-muted);
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
   flex-grow: 1;
+  font-size: 0.875rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .blogLink {
@@ -260,11 +303,15 @@
     width: 36px;
   }
 
-  .blogContent :global(.card) {
+  .blogCard {
     min-width: 350px;
     max-width: 350px;
-    min-height: 280px;
-    height: 280px;
+    min-height: 380px;
+  }
+
+  .blogCardContent {
+    padding: 16px;
+    gap: 10px;
   }
 }
 
@@ -293,12 +340,18 @@
     width: 24px;
   }
 
+  .blogCard {
+    min-width: 340px;
+    max-width: 340px;
+    min-height: 380px;
+  }
+
   .blogTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .blogExcerpt {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -307,11 +360,10 @@
     gap: 20px;
   }
 
-  .blogContent :global(.card) {
+  .blogCard {
     min-width: 320px;
     max-width: 320px;
-    min-height: 260px;
-    height: 260px;
+    min-height: 360px;
   }
 }
 
@@ -334,17 +386,28 @@
     gap: 16px;
   }
 
+  .blogCard {
+    min-width: 280px;
+    max-width: 280px;
+    min-height: 340px;
+  }
+
+  .blogCardContent {
+    padding: 14px;
+    gap: 8px;
+  }
+
   .blogTitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .blogMeta {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     gap: 12px;
   }
 
   .blogExcerpt {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .blogArrow {
@@ -357,15 +420,15 @@
     height: 32px;
   }
 
-  .blogContent :global(.card) {
-    min-width: 280px;
-    max-width: 280px;
-    min-height: 240px;
-    height: 240px;
-  }
-
   .fadeLeft,
   .fadeRight {
     width: 24px;
+  }
+
+  .comingSoonBadge {
+    padding: 6px 12px;
+    font-size: 10px;
+    top: 12px;
+    right: 12px;
   }
 }

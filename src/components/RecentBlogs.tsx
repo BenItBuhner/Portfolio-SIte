@@ -91,13 +91,18 @@ export default function RecentBlogs({ className }: { className?: string }) {
           <div className={styles.blogContent} ref={scrollContainerRef}>
             {blogPosts.length > 0 ? (
               blogPosts.map((post) => (
-                <div key={post.id} className={`card ${post.comingSoon ? styles.comingSoon : ""}`}>
-                  <div className={styles.blogCard}>
+                <div key={post.id} className={`${styles.blogCard} ${post.comingSoon ? styles.comingSoon : ""}`}>
+                  <div className={styles.blogImage}>
+                    <div className={styles.imagePlaceholder}>
+                      Blog Image
+                    </div>
                     {post.comingSoon && (
                       <div className={styles.comingSoonBadge}>
                         Coming Soon
                       </div>
                     )}
+                  </div>
+                  <div className={styles.blogCardContent}>
                     <div className={styles.blogMeta}>
                       <span className={styles.blogDate}>{post.date}</span>
                       <span className={styles.blogReadTime}>{post.readTime}</span>
