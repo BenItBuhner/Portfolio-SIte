@@ -36,7 +36,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
         </div>
         {blog.comingSoon && (
           <div className={styles.comingSoonBadge}>
-            Coming Soon
+            Coming soon
           </div>
         )}
       </div>
@@ -71,7 +71,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
 
           {blog.comingSoon ? (
             <span className={styles.disabledLink}>
-              <span>Coming Soon</span>
+              <span>Coming soon</span>
               <svg
                 className={styles.arrowIcon}
                 viewBox="0 0 24 24"

@@ -99,7 +99,7 @@ export default function FeaturedSection({ className }: { className?: string }) {
                     </div>
                     {project.comingSoon && (
                       <div className={styles.comingSoonBadge}>
-                        Coming Soon
+                        Coming soon
                       </div>
                     )}
                   </div>

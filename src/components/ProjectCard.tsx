@@ -24,7 +24,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
         </div>
         {project.comingSoon && (
           <div className={styles.comingSoonBadge}>
-            Coming Soon
+            Coming soon
           </div>
         )}
       </div>
@@ -61,7 +61,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
                 >
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
-                Coming Soon
+                Coming soon
               </span>
             ) : (
               <>
