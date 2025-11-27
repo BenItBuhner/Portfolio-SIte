@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllProjects } from '@/data/projects';
 import { getAllBlogs } from '@/data/blogs';
+import { getTimeline } from '@/data/timeline';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://bennettbuhner.com';
@@ -32,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/timeline`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/contact-me`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -54,6 +61,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
+
+  // Timeline entries count (for reference, timeline is a single page)
+  const _timelineCount = getTimeline().length;
 
   return [...staticPages, ...projectPages, ...blogPages];
 }

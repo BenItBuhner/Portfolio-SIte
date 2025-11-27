@@ -26,7 +26,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-500`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"
@@ -64,7 +64,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-600`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"
@@ -103,7 +103,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-700`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"
@@ -143,7 +143,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-800`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"
@@ -176,7 +176,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-900`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"
@@ -214,7 +214,7 @@ export default function ContactMePage() {
                 className={`${styles.contactMethod} animate-fade-in-up animate-delay-1000`}
               >
                 <h3 className={styles.methodTitle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className={styles.methodTitleContent}>
                     <svg
                       className={styles.methodIcon}
                       viewBox="0 0 24 24"

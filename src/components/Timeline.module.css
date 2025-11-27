@@ -198,6 +198,34 @@
   text-decoration: underline;
 }
 
+/* Timeline entry highlights list */
+.highlightsList {
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+/* Timeline entry links container */
+.linksContainer {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Timeline entry link */
+.entryLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.entryLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .timelineSection {
     gap: 24px;

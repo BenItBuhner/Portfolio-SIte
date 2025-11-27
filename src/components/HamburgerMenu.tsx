@@ -51,9 +51,6 @@ export default function HamburgerMenu() {
         aria-label="Toggle navigation menu"
         aria-expanded={isVisible}
         disabled={isAnimating}
-        style={{
-          pointerEvents: isAnimating ? 'none' : 'auto'
-        }}
       >
         <span className={styles.hamburgerLine}></span>
         <span className={styles.hamburgerLine}></span>
@@ -67,54 +64,34 @@ export default function HamburgerMenu() {
             <nav className={`${styles.menu} ${isVisible ? styles.menuOpen : ''}`} role="dialog" aria-modal>
               <Link
                 href="/overview"
-                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
+                className={`${styles.menuLink} ${styles.menuLinkDelay1} ${isVisible ? styles.menuLinkVisible : ''}`}
                 onClick={closeMenu}
-                style={{
-                  transitionDelay: isVisible ? '0.1s' : '0.3s',
-                  pointerEvents: isVisible ? 'auto' : 'none'
-                }}
               >
                 Overview
               </Link>
               <Link
                 href="/projects"
-                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
+                className={`${styles.menuLink} ${styles.menuLinkDelay2} ${isVisible ? styles.menuLinkVisible : ''}`}
                 onClick={closeMenu}
-                style={{
-                  transitionDelay: isVisible ? '0.2s' : '0.2s',
-                  pointerEvents: isVisible ? 'auto' : 'none'
-                }}
               >
                 Projects
               </Link>
               <Link
                 href="/blog"
-                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
+                className={`${styles.menuLink} ${styles.menuLinkDelay3} ${isVisible ? styles.menuLinkVisible : ''}`}
                 onClick={closeMenu}
-                style={{
-                  transitionDelay: isVisible ? '0.3s' : '0.1s',
-                  pointerEvents: isVisible ? 'auto' : 'none'
-                }}
               >
                 Blog
               </Link>
               <Link
                 href="/contact-me"
-                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
+                className={`${styles.menuLink} ${styles.menuLinkDelay4} ${isVisible ? styles.menuLinkVisible : ''}`}
                 onClick={closeMenu}
-                style={{
-                  transitionDelay: isVisible ? '0.4s' : '0s',
-                  pointerEvents: isVisible ? 'auto' : 'none'
-                }}
               >
                 Contact me
               </Link>
               <div
-                className={`${styles.menuLink} ${isVisible ? styles.menuLinkVisible : ''}`}
-                style={{
-                  transitionDelay: isVisible ? '0.5s' : '0s',
-                  pointerEvents: isVisible ? 'auto' : 'none'
-                }}
+                className={`${styles.menuLink} ${styles.menuLinkDelay5} ${isVisible ? styles.menuLinkVisible : ''}`}
               >
                 <ThemeToggle />
               </div>

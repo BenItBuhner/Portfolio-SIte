@@ -68,16 +68,16 @@ export default function Timeline({ className }: { className?: string }) {
               <div className={styles.details}>
                 {entry.description}
                 {entry.highlights && (
-                  <ul style={{ marginTop: 8 }}>
+                  <ul className={styles.highlightsList}>
                     {entry.highlights.map((h, i) => (
                       <li key={i}>{h}</li>
                     ))}
                   </ul>
                 )}
                 {entry.links && (
-                  <div style={{ marginTop: 8 }}>
+                  <div className={styles.linksContainer}>
                     {entry.links.map((l, i) => (
-                      <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" style={{ marginRight: 12, color: 'var(--color-accent)' }}>
+                      <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" className={styles.entryLink}>
                         {l.label}
                       </a>
                     ))}

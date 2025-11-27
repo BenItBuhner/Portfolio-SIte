@@ -15,7 +15,10 @@
   position: relative;
   z-index: 30;
   transition: background-color 0.2s ease;
-  pointer-events: auto;
+}
+
+.hamburgerButton:disabled {
+  pointer-events: none;
 }
 
 .hamburgerButton:hover {
@@ -108,7 +111,22 @@
 .menuLinkVisible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
+
+/* Staggered animation delays for menu links */
+.menuLinkDelay1 { transition-delay: 0.1s; }
+.menuLinkDelay2 { transition-delay: 0.2s; }
+.menuLinkDelay3 { transition-delay: 0.3s; }
+.menuLinkDelay4 { transition-delay: 0.4s; }
+.menuLinkDelay5 { transition-delay: 0.5s; }
+
+/* Reverse delays when closing (applied via :not(.menuLinkVisible)) */
+.menuLinkDelay1:not(.menuLinkVisible) { transition-delay: 0.3s; }
+.menuLinkDelay2:not(.menuLinkVisible) { transition-delay: 0.2s; }
+.menuLinkDelay3:not(.menuLinkVisible) { transition-delay: 0.1s; }
+.menuLinkDelay4:not(.menuLinkVisible) { transition-delay: 0s; }
+.menuLinkDelay5:not(.menuLinkVisible) { transition-delay: 0s; }
 
 .menuLink:last-child {
   border-bottom: none;

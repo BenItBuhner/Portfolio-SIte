@@ -98,6 +98,13 @@
   gap: 8px;
 }
 
+/* Flex container for icon + label in method title */
+.methodTitleContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media (max-width: 480px) {
   .methodTitle {
     font-size: 18px;
