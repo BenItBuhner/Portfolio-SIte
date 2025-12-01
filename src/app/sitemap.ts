@@ -3,6 +3,29 @@ import { getAllProjects } from '@/data/projects';
 import { getAllBlogs } from '@/data/blogs';
 import { getTimeline } from '@/data/timeline';
 
+/**
+ * Safely extracts the final segment from a blog slug for URL construction.
+ * Handles edge cases like empty slugs, missing slashes, and undefined values.
+ */
+function getBlogSlugSegment(slug: string | undefined): string {
+  if (!slug || typeof slug !== 'string') {
+    return '';
+  }
+  
+  // Remove leading/trailing slashes and whitespace
+  const trimmed = slug.trim().replace(/^\/+|\/+$/g, '');
+  
+  if (!trimmed) {
+    return '';
+  }
+  
+  // Split by '/' and get the last segment
+  const segments = trimmed.split('/').filter(segment => segment.length > 0);
+  
+  // Return the last segment, or the whole trimmed slug if no slashes found
+  return segments.length > 0 ? segments[segments.length - 1] : trimmed;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://bennettbuhner.com';
 
@@ -55,12 +78,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Dynamic blog pages
-  const blogPages = getAllBlogs().map((blog) => ({
-    url: `${baseUrl}/blog/${blog.slug.split('/').pop()}`,
-    lastModified: new Date(blog.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  const blogPages = getAllBlogs().map((blog) => {
+    const slugSegment = getBlogSlugSegment(blog.slug);
+    const blogUrl = slugSegment 
+      ? `${baseUrl}/blog/${slugSegment}`
+      : `${baseUrl}/blog/${blog.id}`;
+    
+    return {
+      url: blogUrl,
+      lastModified: new Date(blog.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    };
+  });
 
   // Timeline entries count (for reference, timeline is a single page)
   const _timelineCount = getTimeline().length;

@@ -9,9 +9,40 @@ interface BlogPageProps {
   params: Promise<{ postId: string }>;
 }
 
+/**
+ * Safely extracts the final segment from a blog slug for URL construction.
+ * Handles edge cases like empty slugs, missing slashes, and undefined values.
+ */
+function getBlogSlugSegment(slug: string | undefined): string {
+  if (!slug || typeof slug !== 'string') {
+    return '';
+  }
+  
+  // Remove leading/trailing slashes and whitespace
+  const trimmed = slug.trim().replace(/^\/+|\/+$/g, '');
+  
+  if (!trimmed) {
+    return '';
+  }
+  
+  // Split by '/' and get the last segment
+  const segments = trimmed.split('/').filter(segment => segment.length > 0);
+  
+  // Return the last segment, or the whole trimmed slug if no slashes found
+  return segments.length > 0 ? segments[segments.length - 1] : trimmed;
+}
+
 export default async function BlogDetailPage({ params }: BlogPageProps) {
   const { postId } = await params;
   const blog = getBlogById(postId);
+
+  // Safely construct the blog URL
+  const slugSegment = getBlogSlugSegment(blog?.slug);
+  const blogUrl = blog 
+    ? (slugSegment 
+        ? `https://bennettbuhner.com/blog/${slugSegment}`
+        : `https://bennettbuhner.com/blog/${blog.id}`)
+    : 'https://bennettbuhner.com/blog';
 
   return (
     <div className="page-container">
@@ -27,7 +58,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
                   <ShareButton 
                     title={blog.title} 
                     text={`Read this article: ${blog.title}`}
-                    url={`https://bennettbuhner.com/blog/${blog.slug.split("/").pop()}`} 
+                    url={blogUrl} 
                   />
                 </div>
               </div>

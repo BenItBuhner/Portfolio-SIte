@@ -110,19 +110,19 @@ export default function Footer({ className }: { className?: string }) {
           </a>
         </div>
         <nav className={styles.nav}>
-          <Link href="#overview" className="nav-link">
+          <Link href="/overview" className="nav-link">
             Overview
           </Link>
           <span className={styles.separator}>•</span>
-          <Link href="#projects" className="nav-link">
+          <Link href="/projects" className="nav-link">
             Projects
           </Link>
           <span className={styles.separator}>•</span>
-          <Link href="#blog" className="nav-link">
+          <Link href="/blog" className="nav-link">
             Blog
           </Link>
           <span className={styles.separator}>•</span>
-          <Link href="#contact" className="nav-link">
+          <Link href="/contact-me" className="nav-link">
             Contact me
           </Link>
         </nav>

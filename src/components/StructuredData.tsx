@@ -9,7 +9,35 @@ interface ProjectStructuredDataProps {
   project: Project;
 }
 
+/**
+ * Safely extracts the final segment from a blog slug for URL construction.
+ * Handles edge cases like empty slugs, missing slashes, and undefined values.
+ */
+function getBlogSlugSegment(slug: string | undefined): string {
+  if (!slug || typeof slug !== 'string') {
+    return '';
+  }
+  
+  // Remove leading/trailing slashes and whitespace
+  const trimmed = slug.trim().replace(/^\/+|\/+$/g, '');
+  
+  if (!trimmed) {
+    return '';
+  }
+  
+  // Split by '/' and get the last segment
+  const segments = trimmed.split('/').filter(segment => segment.length > 0);
+  
+  // Return the last segment, or the whole trimmed slug if no slashes found
+  return segments.length > 0 ? segments[segments.length - 1] : trimmed;
+}
+
 export function BlogStructuredData({ blog }: BlogStructuredDataProps) {
+  const slugSegment = getBlogSlugSegment(blog.slug);
+  const blogUrl = slugSegment 
+    ? `https://bennettbuhner.com/blog/${slugSegment}`
+    : `https://bennettbuhner.com/blog/${blog.id}`;
+  
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -29,9 +57,9 @@ export function BlogStructuredData({ blog }: BlogStructuredDataProps) {
     "dateModified": blog.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://bennettbuhner.com/blog/${blog.slug.split('/').pop()}`
+      "@id": blogUrl
     },
-    "url": `https://bennettbuhner.com/blog/${blog.slug.split('/').pop()}`,
+    "url": blogUrl,
     "keywords": blog.tags.join(", "),
     "articleSection": "Technology",
     "wordCount": blog.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
