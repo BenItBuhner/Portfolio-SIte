@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturedSection from "@/components/FeaturedSection";
@@ -15,7 +16,14 @@ export default function PortfolioLandingPage() {
             <div className={styles.heroContent}>
               <div className={`${styles.profileImage} animate-fade-in-up animate-delay-300`}>
                 <div className={styles.imagePlaceholder}>
-                  Photo
+                  <Image
+                    src="/account-icon.png"
+                    alt="Bennett Buhner"
+                    width={200}
+                    height={200}
+                    className={styles.profileImg}
+                    priority
+                  />
                 </div>
               </div>
               <div className={`${styles.heroText} animate-fade-in-up animate-delay-400`}>

@@ -26,6 +26,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
           {project ? (
             <>
+              {project.image && (
+                <div className={styles.headerImage}>
+                  <div className={styles.imagePlaceholder}>
+                    <img src={project.image} alt={project.title} />
+                  </div>
+                </div>
+              )}
               <div className={styles.meta}>
                 <div className={styles.tech}>
                   {project.tech.map((t, i) => (
@@ -87,9 +94,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 )}
               </div>
 
-              <div className={styles.content}>
-                {project.description}
-              </div>
+              <div 
+                className={styles.content}
+                dangerouslySetInnerHTML={{ __html: project.content || project.description }}
+              />
             </>
           ) : (
             <div className={styles.content}>

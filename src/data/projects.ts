@@ -1,7 +1,9 @@
 export interface Project {
   id: number;
   title: string;
-  description: string;
+  description: string; // Short summary for cards/previews
+  content?: string; // Optional HTML content supporting headers, lists, images, embeds, links, etc.
+  image?: string; // Optional header image URL
   tech: string[];
   github: string;
   demo: string | null;
@@ -37,13 +39,14 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/athena-cli",
     demo: null
   },
+  */
   {
     id: 4,
-    title: "Base Agent",
+    title: "Agent Chassis",
     description:
       "An open-source FastAPI agent base for anyone to quickly fork and get started with agents. Uses MCP, multi-agent orchestration, and a modular framework to make it intuitive to build off of.",
     tech: ["FastAPI", "Python", "MCP", "Multi-Agent"],
-    github: "https://github.com/BenItBuhner/base-agent",
+    github: "https://github.com/BenItBuhner/Agent-Chassis",
     demo: null
   },
   {
@@ -55,6 +58,7 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/model-proxy",
     demo: null
   },
+  /*
   {
     id: 6,
     title: "Portfolio Site",

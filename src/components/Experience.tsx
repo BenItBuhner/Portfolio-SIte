@@ -4,15 +4,24 @@ import styles from "./Experience.module.css";
 const imgGroup34Experience = "/assets/group34-experience.svg";
 
 const INTRO_TEXT =
-  "Albeit, I have very little experience so far, since I am only just finishing up school and have primarily focused on making designs and my own independent OSS projects along with minor contributions to other projects. Nonetheless, I will provide a few examples of what i have done so far just for an idea of what I've done.";
+  "While my experience is limited (due to school/projects), I have still contributed a few key things, all of which are useful towards ML, agents, interfaces, and design.";
 
 const EXPERIENCE_ITEMS = [
   {
-    text: "PRs; blah blah blah, need to make PRs later.",
+    title: "Creating & Scaling RL Environments:",
+    text: "I have made prior environments, such as the \"UBench\" environment for Prime Intellect's \"prime-environments,\" and am still working on it.",
   },
   {
-    title: "Designing for Others:",
-    text: "I have designed for some others, such as a few small startups like Skinvincible AI, Aviate (still incognito), and a few personal friends. I have created interfaces, widgets, logos, and more.",
+    title: "Training Models:",
+    text: "I have made a few models, fine-tuned/distilled others, and also deployed some for Aviate (in incognito right now).",
+  },
+  {
+    title: "Developing Agents & Frameworks:",
+    text: "I have made agents such as the agent-chassis and used these for Aviate as well, and some even such as the \"Model Proxy\" has been implemented and scaled for use on a production instance that thousands of people use for Claude Code.",
+  },
+  {
+    title: "Designing:",
+    text: "I have designed for a few such as Skinvincible and Aviate, and love to do it in my past-time. My focus is primarily mobile UI/UX, but I often work on other formats as well.",
   },
 ];
 
