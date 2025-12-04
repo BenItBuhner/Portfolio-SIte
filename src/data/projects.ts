@@ -44,7 +44,8 @@ const projects: Project[] = [
     id: 4,
     title: "Agent Chassis",
     description:
-      "An open-source FastAPI agent base for anyone to quickly fork and get started with agents. Uses MCP, multi-agent orchestration, and a modular framework to make it intuitive to build off of.",
+      "Developed a modular agent foundation with native MCP and local tool support. Includes pre-routed authentication, versatile state management, and more for rapid agent deployment.",
+    image: "/projects/agent-chassis-header.png",
     tech: ["FastAPI", "Python", "MCP", "Multi-Agent"],
     github: "https://github.com/BenItBuhner/Agent-Chassis",
     demo: null
@@ -53,7 +54,7 @@ const projects: Project[] = [
     id: 5,
     title: "Model Proxy",
     description:
-      "This proxy allows for any OpenAI compatible providers, API keys, and models, to be fallen back on and ran through a centralized inference server that works through both OpenAI and an Anthropic API interpreter. You can easily run any of your favorite models on Claude Code or wherever else you want!",
+      "Built a resilient inference gateway that offers API key, provider, and model-level fallbacks. Forked and created a custom version for using any model with Claude Code easily.",
     tech: ["Python", "FastAPI", "OpenAI API", "Anthropic API"],
     github: "https://github.com/BenItBuhner/model-proxy",
     demo: null

@@ -1,9 +1,11 @@
+import Image from "next/image";
 import styles from "./ProjectCard.module.css";
 
 interface Project {
   id: number;
   title: string;
   description: string;
+  image?: string;
   tech: string[];
   github: string;
   demo: string | null;
@@ -19,7 +21,17 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
     <article className={`${styles.projectCard} ${className || ""}`}>
       <div className={styles.projectImage}>
         <div className={styles.imagePlaceholder}>
-          Project Image
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className={styles.projectImg}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <span>Project Image</span>
+          )}
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/data/projects";
 import styles from "./FeaturedSection.module.css";
@@ -95,7 +96,17 @@ export default function FeaturedSection({ className }: { className?: string }) {
                 <Link key={project.id} href={`/projects/${project.id}`} className={styles.featuredCard}>
                   <div className={styles.featuredImage}>
                     <div className={styles.imagePlaceholder}>
-                      Project Image
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className={styles.featuredImg}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <span>Project Image</span>
+                      )}
                     </div>
                   </div>
                   <div className={styles.featuredCardContent}>
