@@ -1,0 +1,56 @@
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 100%;
+}
+
+.controlButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: filter 0.15s ease;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.controlButton:hover {
+  filter: brightness(1.1);
+}
+
+.controlButton:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
+}
+
+.close {
+  background-color: #ff5f57;
+}
+
+.close:hover {
+  background-color: #ff3b30;
+}
+
+.minimize {
+  background-color: #ffbd2e;
+}
+
+.minimize:hover {
+  background-color: #ff9500;
+}
+
+.maximize {
+  background-color: #28c940;
+}
+
+.maximize:hover {
+  background-color: #34c759;
+}
+

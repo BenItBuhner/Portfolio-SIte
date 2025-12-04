@@ -1,0 +1,74 @@
+.window {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-page-bg);
+  border: 1.75653px solid var(--color-border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 400px;
+  min-height: 300px;
+  backdrop-filter: blur(10px);
+}
+
+.window.maximized {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.window.minimized {
+  height: 32px;
+  min-height: 32px;
+  min-width: 200px;
+  width: 200px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background-color: var(--color-page-bg);
+}
+
+.resizeHandle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  background: linear-gradient(
+    -45deg,
+    transparent 0%,
+    transparent 40%,
+    var(--color-border-subtle) 40%,
+    var(--color-border-subtle) 45%,
+    transparent 45%,
+    transparent 55%,
+    var(--color-border-subtle) 55%,
+    var(--color-border-subtle) 60%,
+    transparent 60%
+  );
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.resizeHandle:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .window {
+    display: none;
+  }
+}
+

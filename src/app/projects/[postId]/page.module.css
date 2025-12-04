@@ -153,12 +153,16 @@
 
 .content ul,
 .content ol {
-  margin: 16px 0;
-  padding-left: 24px;
+  margin: 0;
+  margin-top: 14px;
+  list-style: disc;
 }
 
 .content li {
-  margin: 8px 0;
+  line-height: normal;
+  list-style: disc;
+  margin-bottom: 7px;
+  margin-left: 27px;
 }
 
 .content a {

@@ -44,7 +44,20 @@ const projects: Project[] = [
     id: 4,
     title: "Agent Chassis",
     description:
-      "Developed a modular agent foundation with native MCP and local tool support. Includes pre-routed authentication, versatile state management, and more for rapid agent deployment.",
+      "A strong foundation for building versatile agents with native MCP and local tool support. Includes pre-routed authentication, persistent state management, and modular architecture for rapid agent deployment at any scale.",
+    content: `<p>As we have all come to realize, generative AI agents are the future, and will be for a good while. And although they are super powerful, they can be quite complex and frustrating to make and scale for your purpose(s). This is why I have come up with something <em>very</em> useful for people that want to get their foot in the door when it comes to making agents, the <strong>Agent Chassis</strong>! This "chassis" is named uniquely, as it well takes on the characteristics of a vehicle chassis; it is a strong foundation that has majority of the core functionality.</p>
+<p>This foundation offers a ton, including:</p>
+<ul>
+  <li>MCP and local tool integration out-of-the-box</li>
+  <li>Pre-routed authentication for easy usage for production-level instances</li>
+  <li>Server-side and client-side persistent methods depending on what one needs</li>
+  <li>Modular agency throughout, easily enabling agents/completions to be called from anywhere, and new routes can be made with ease</li>
+  <li>Redis and DB natively integrated for production-scale usage</li>
+  <li>And more!</li>
+</ul>
+<p>I made this out of a major frustration of mine—I was trying to build new agents off of FastAPI, but every single one was messy, majorly unique, and imperfect in their own annoying ways. But with this, I can create my own customized/personalized agents. Each with their own endpoints, uses, tools, and so on.</p>
+<p>I really hope people find this useful, as while it may not be anything too notable, it takes full advantage of the many offerings of today, such as SSE, HTTP, and other similar MCP implementations, and it could be genuinely useful to people that just want to get a grasp of how to use these unique protocols.</p>
+<p>You can check out the GitHub repository above, and I hope this helps anyone in the future that wants to make their own agent(s), either locally or at production scale.</p>`,
     image: "/projects/agent-chassis-header.png",
     tech: ["FastAPI", "Python", "MCP", "Multi-Agent"],
     github: "https://github.com/BenItBuhner/Agent-Chassis",

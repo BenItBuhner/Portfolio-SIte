@@ -4,7 +4,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturedSection from "@/components/FeaturedSection";
 import RecentBlogs from "@/components/RecentBlogs";
+import AIChat from "@/components/AIChat";
 import styles from "./page.module.css";
+
+// Check if AI chat should be enabled via environment variable
+const ENABLE_AI_CHAT = process.env.NEXT_PUBLIC_ENABLE_AI_CHAT === "true";
 
 export default function PortfolioLandingPage() {
   return (
@@ -50,9 +54,14 @@ export default function PortfolioLandingPage() {
               </div>
             </div>
           </div>
-          <div className={styles.heroRight}>
-            {/* Right column - empty for now */}
-          </div>
+          {ENABLE_AI_CHAT && (
+            <>
+              <div className={styles.heroRight} id="hero-right-marker">
+                <div className={styles.chatPlaceholder} />
+              </div>
+              <AIChat className="animate-fade-in-up animate-delay-400" />
+            </>
+          )}
         </section>
 
         <FeaturedSection className="animate-fade-in-up animate-delay-600" />
