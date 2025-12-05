@@ -10,9 +10,7 @@ export interface Blog {
   image?: string; // Optional header image URL
 }
 
-const blogs: Blog[] = [
-  // Blog posts will be added here
-];
+const blogs: Blog[] = [];
 
 export function getAllBlogs(): Blog[] {
   return blogs;

@@ -15,7 +15,9 @@ export default function PortfolioLandingPage() {
     <div className="page-container">
       <Header className="animate-fade-in" />
       <main className="page-main">
-        <section className={`${styles.hero} animate-fade-in-up animate-delay-200`}>
+        <section
+          className={`${ENABLE_AI_CHAT ? `${styles.hero} ${styles.heroWithRight}` : styles.hero} animate-fade-in-up animate-delay-200`}
+        >
           <div className={styles.heroLeft}>
             <div className={styles.heroContent}>
               <div className={`${styles.profileImage} animate-fade-in-up animate-delay-300`}>

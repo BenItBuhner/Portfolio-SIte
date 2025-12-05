@@ -54,24 +54,37 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
             <>
               <div className="header-wrapper">
                 <h1 className="header-title">{blog.title}</h1>
-                <div className={styles.shareWrapper}>
+              </div>
+
+              <div className={styles.metaRow}>
+                <div className={styles.metaLeft}>
+                  <div className={styles.meta}>
+                    <span>
+                      {new Date(blog.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      })}
+                    </span>
+                    <span>•</span>
+                    <span>{blog.readTime}</span>
+                  </div>
+                  {blog.tags?.length ? (
+                    <div className={styles.tags}>
+                      {blog.tags.map((t, i) => (
+                        <span key={i} className={styles.tag}>{t}</span>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className={styles.links}>
                   <ShareButton 
                     title={blog.title} 
                     text={`Read this article: ${blog.title}`}
                     url={blogUrl} 
                   />
                 </div>
-              </div>
-              <div className={styles.meta}>
-                <span>
-                  {new Date(blog.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                  })}
-                </span>
-                <span>•</span>
-                <span>{blog.readTime}</span>
               </div>
               <div className={styles.headerImage}>
                 <div className={styles.imagePlaceholder}>

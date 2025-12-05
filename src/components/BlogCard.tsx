@@ -5,6 +5,7 @@ interface Blog {
   id: number;
   title: string;
   excerpt: string;
+  image?: string;
   date: string;
   readTime: string;
   tags: string[];
@@ -30,9 +31,13 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
   return (
     <article className={`${styles.blogCard} ${className || ""}`}>
       <div className={styles.blogImage}>
-        <div className={styles.imagePlaceholder}>
-          Blog Image
-        </div>
+        {blog.image ? (
+          <img src={blog.image} alt={blog.title} />
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            Blog Image
+          </div>
+        )}
       </div>
 
       <div className={styles.blogContent}>

@@ -63,6 +63,7 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/Agent-Chassis",
     demo: null
   },
+  /*
   {
     id: 5,
     title: "Model Proxy",
@@ -72,6 +73,7 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/model-proxy",
     demo: null
   },
+  */
   /*
   {
     id: 6,
