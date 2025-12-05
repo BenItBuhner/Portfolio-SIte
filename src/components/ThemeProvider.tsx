@@ -4,10 +4,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 type ThemeSource = "system" | "manual";
+type ThemeMode = "light" | "dark" | "system";
 
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  setThemeMode: (mode: ThemeMode) => void;
+  source: ThemeSource;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -92,14 +95,30 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [theme, source]);
 
-  const toggleTheme = () => {
-    // User interaction switches us into manual mode and toggles the current theme
+  const setThemeMode = (mode: ThemeMode) => {
+    if (mode === "system") {
+      setSource("system");
+      if (typeof window !== "undefined") {
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setTheme(prefersDark ? "dark" : "light");
+      } else {
+        setTheme("light");
+      }
+      return;
+    }
+    // manual selection
     setSource("manual");
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme(mode);
+  };
+
+  const toggleTheme = () => {
+    setThemeMode(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setThemeMode, source }}>
       {children}
     </ThemeContext.Provider>
   );
