@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ChatMessages from "./AIChat/ChatMessages";
+import ChatMessages, { Message } from "./AIChat/ChatMessages";
 import QuickPrompts from "./AIChat/QuickPrompts";
 import ChatInput from "./AIChat/ChatInput";
 import Window from "./AIChat/Window";
@@ -35,7 +35,7 @@ export default function AIChat({ className }: { className?: string }) {
   }, []);
 
   // Placeholder: Mock messages for demo
-  const mockMessages = [
+  const mockMessages: Message[] = [
     {
       id: 1,
       type: "user" as const,

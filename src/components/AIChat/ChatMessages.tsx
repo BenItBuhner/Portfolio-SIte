@@ -3,7 +3,7 @@ import TypingIndicator from "./TypingIndicator";
 import ToolCall from "./ToolCall";
 import styles from "./ChatMessages.module.css";
 
-interface Message {
+export interface Message {
   id: number;
   type: "user" | "ai";
   text: string;
