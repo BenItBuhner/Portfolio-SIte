@@ -8,9 +8,24 @@ export interface Blog {
   tags: string[];
   slug: string; // e.g. "/blog/building-agentic-systems"
   image?: string; // Optional header image URL
+  comingSoon?: boolean;
 }
 
-const blogs: Blog[] = [];
+const blogs: Blog[] = [
+  {
+    id: 1,
+    title: "How I use VS Code anywhere, even on my iPad!",
+    excerpt:
+      "Stay tuned for the full write-up—this post will cover the journey, architecture, and lessons learned once details are ready.",
+    content: "",
+    date: "2025-02-01",
+    readTime: "Coming soon",
+    tags: ["Placeholder"],
+    slug: "/blog/placeholder",
+    image: "/projects/how-use-vs-code-anywhere-header.png",
+    comingSoon: true,
+  },
+];
 
 export function getAllBlogs(): Blog[] {
   return blogs;

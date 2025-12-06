@@ -9,11 +9,34 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .projectCard:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-elevated);
+}
+
+.comingSoon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+}
+
+.comingSoonBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  font-family: var(--font-geist-sans);
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--color-accent);
+  background-color: var(--color-chip-bg);
+  border: 1px solid var(--color-chip-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-subtle);
 }
 
 .projectImage {
@@ -93,7 +116,7 @@
 .projectHeader {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .projectTitle {
@@ -105,9 +128,23 @@
   line-height: 1.3;
 }
 
+.projectMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-geist-sans);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--color-accent-soft);
+  flex-wrap: wrap;
+}
+
 @media (max-width: 480px) {
   .projectTitle {
     font-size: 16px;
+  }
+  .projectMeta {
+    font-size: 11px;
   }
 }
 

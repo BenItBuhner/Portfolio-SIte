@@ -18,7 +18,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <Header />
       {project && <ProjectStructuredData project={project} />}
       <main className="page-main">
-        <section className={styles.page}>
+        <section className={`${styles.page} animate-fade-in-up animate-delay-200`}>
           <div className="header-wrapper">
             <h1 className="header-title">{project?.title ?? "Project not found"}</h1>
             <p className="header-subtitle">Project details</p>

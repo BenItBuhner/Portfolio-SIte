@@ -94,6 +94,11 @@ export default function FeaturedSection({ className }: { className?: string }) {
             {featuredProjects.length > 0 ? (
               featuredProjects.map((project) => (
                 <Link key={project.id} href={`/projects/${project.id}`} className={styles.featuredCard}>
+                  {project.comingSoon && (
+                    <div className={styles.comingSoon}>
+                      <span className={styles.comingSoonBadge}>Coming Soon</span>
+                    </div>
+                  )}
                   <div className={styles.featuredImage}>
                     <div className={styles.imagePlaceholder}>
                       {project.image ? (
@@ -112,6 +117,15 @@ export default function FeaturedSection({ className }: { className?: string }) {
                   <div className={styles.featuredCardContent}>
                     <div className={styles.featuredCardHeader}>
                       <h3 className={styles.featuredTitle}>{project.title}</h3>
+                      <div className={styles.featuredMeta}>
+                        <span>
+                          {new Date(project.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </span>
+                      </div>
                     </div>
                     <p className={styles.featuredDescription}>
                       {project.description}

@@ -2,12 +2,14 @@ export interface Project {
   id: number;
   title: string;
   description: string; // Short summary for cards/previews
+  date: string; // ISO string
   content?: string; // Optional HTML content supporting headers, lists, images, embeds, links, etc.
   image?: string; // Optional header image URL
   tech: string[];
   github: string;
   demo: string | null;
   slug?: string; // optional; primary key is id for projects
+  comingSoon?: boolean;
 }
 
 const projects: Project[] = [
@@ -45,6 +47,7 @@ const projects: Project[] = [
     title: "Agent Chassis",
     description:
       "A strong foundation for building versatile agents with native MCP and local tool support. Includes pre-routed authentication, persistent state management, and modular architecture for rapid agent deployment at any scale.",
+    date: "2025-01-15",
     content: `<p>As we have all come to realize, generative AI agents are the future, and will be for a good while. And although they are super powerful, they can be quite complex and frustrating to make and scale for your purpose(s). This is why I have come up with something <em>very</em> useful for people that want to get their foot in the door when it comes to making agents, the <strong>Agent Chassis</strong>! This "chassis" is named uniquely, as it well takes on the characteristics of a vehicle chassis; it is a strong foundation that has majority of the core functionality.</p>
 <p>This foundation offers a ton, including:</p>
 <ul>
@@ -63,17 +66,34 @@ const projects: Project[] = [
     github: "https://github.com/BenItBuhner/Agent-Chassis",
     demo: null
   },
-  /*
   {
     id: 5,
-    title: "Model Proxy",
+    title: "Model Proxy & Claude Code Link",
     description:
-      "Built a resilient inference gateway that offers API key, provider, and model-level fallbacks. Forked and created a custom version for using any model with Claude Code easily.",
+      "Resilient inference proxy with API key/provider/model fallbacks, forked to plug any model into Claude Code with minimal setup.",
+    date: "2025-02-01",
+    content: `
+<h2>The Pain With Claude Code & Similar Tools</h2>
+<p>I always loved the looks, experience, and more with Claude Code; even if many showed immense latency, bloated inference usage, and many inefficiencies, I find these are mere tradeoffs to something far greater. Sub-agents, native MCP, skill, slash commands, and more, <em>all</em> are very useful and can compound their usefulness when used right. Yet to mere mortals, this usefulness is restrained by its immense cost to use with no real limits. Sure, you can enable paid usage and pay on a per token basis, but this stacks quickly, and there are strong alternatives like GLM-4.6, Qwen3-Coder, and many more.</p>
+<h2>My Solution to These Issues</h2>
+<p>Here is my custom “model proxy,” not solely for Claude Code, but also to harness free offerings from some providers. Many offer free tiers with rate-limits, and those limits can be frustrating when you hit them—until now. This proxy has:</p>
+<ul>
+  <li><strong>API Key Fallback Protection:</strong> Detects rate-limits/faults and retries other API keys for that provider to keep tools like Claude Code flowing.</li>
+  <li><strong>Provider Fallback Protection:</strong> If all keys/accounts or a server are overloaded, the framework gracefully falls back to another provider for the same model.</li>
+  <li><strong>Model Fallback Protection:</strong> When all keys and models are depleted, it can resort to the next best model, letting key-level and provider-level fallbacks handle the next option.</li>
+</ul>
+<h2>How It’s Better Than the Rest</h2>
+<p>Many “Claude Code proxies” work but can feel rough. This framework enables efficient streaming at scale, multiple models concurrently, and layered fail-safes. It’s a singular command to get your custom models running in Claude Code or any OpenAI/Anthropic-compatible tool.</p>
+<h2>Where This Proxy/Link is Being Used Today</h2>
+<p>Thousands use this via a beta in <strong>Nahcrof AI</strong>, a side-project hosting affordable inference (GLM-4.6, Kimi K2 Thinking, DeepSeek V3.2 Reasoning, Qwen3-Coder, GPT-OSS-120B, and more). The OSS implementation welcomes contributions to improve accessibility.</p>
+<h2>Why Take Advantage of This?</h2>
+<p>Claude Code is powerful but not accessible to all. If you hit limits (free or paid), this “set it and forget it” proxy fails over across keys, providers, and models to keep you working without interruption.</p>
+    `,
+    image: "/projects/claude-code-tunnel-header.png",
     tech: ["Python", "FastAPI", "OpenAI API", "Anthropic API"],
     github: "https://github.com/BenItBuhner/model-proxy",
     demo: null
   },
-  */
   /*
   {
     id: 6,

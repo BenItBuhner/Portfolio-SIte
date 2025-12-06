@@ -5,10 +5,12 @@ interface Project {
   id: number;
   title: string;
   description: string;
+  date: string;
   image?: string;
   tech: string[];
   github: string;
   demo: string | null;
+  comingSoon?: boolean;
 }
 
 interface ProjectCardProps {
@@ -19,6 +21,11 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <article className={`${styles.projectCard} ${className || ""}`}>
+      {project.comingSoon && (
+        <div className={styles.comingSoon}>
+          <span className={styles.comingSoonBadge}>Coming Soon</span>
+        </div>
+      )}
       <div className={styles.projectImage}>
         <div className={styles.imagePlaceholder}>
           {project.image ? (
@@ -38,6 +45,9 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
       <div className={styles.projectContent}>
         <div className={styles.projectHeader}>
           <h3 className={styles.projectTitle}>{project.title}</h3>
+          <div className={styles.projectMeta}>
+            <span>{new Date(project.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+          </div>
         </div>
 
         <p className={styles.projectDescription}>

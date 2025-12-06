@@ -49,7 +49,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
       <Header />
       {blog && <BlogStructuredData blog={blog} />}
       <main className="page-main">
-        <section className={styles.page}>
+        <section className={`${styles.page} animate-fade-in-up animate-delay-200`}>
           {blog ? (
             <>
               <div className="header-wrapper">

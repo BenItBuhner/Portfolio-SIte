@@ -10,6 +10,7 @@ interface Blog {
   readTime: string;
   tags: string[];
   slug: string;
+  comingSoon?: boolean;
 }
 
 interface BlogCardProps {
@@ -30,6 +31,11 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
   const slugSegment = slugFromProp || slugify(blog.title) || String(blog.id);
   return (
     <article className={`${styles.blogCard} ${className || ""}`}>
+      {blog.comingSoon && (
+        <div className={styles.comingSoon}>
+          <span className={styles.comingSoonBadge}>Coming Soon</span>
+        </div>
+      )}
       <div className={styles.blogImage}>
         {blog.image ? (
           <img src={blog.image} alt={blog.title} />
@@ -50,7 +56,9 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
                 day: 'numeric'
               })}
             </span>
-            <span className={styles.blogReadTime}>{blog.readTime}</span>
+            {!blog.comingSoon && (
+              <span className={styles.blogReadTime}>{blog.readTime}</span>
+            )}
           </div>
           <h3 className={styles.blogTitle}>{blog.title}</h3>
         </div>

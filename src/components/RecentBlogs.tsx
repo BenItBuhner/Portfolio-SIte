@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getAllBlogs } from "@/data/blogs";
 import styles from "./RecentBlogs.module.css";
 
@@ -50,8 +51,8 @@ export default function RecentBlogs({ className }: { className?: string }) {
   const scroll = (direction: "left" | "right") => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    const card = el.querySelector(".card") as HTMLElement | null;
-    const cardWidth = card ? card.offsetWidth : Math.round(el.clientWidth * 0.8);
+    const firstCard = el.firstElementChild as HTMLElement | null;
+    const cardWidth = firstCard ? firstCard.offsetWidth : Math.round(el.clientWidth * 0.8);
     const gap = 24;
     const amount = cardWidth + gap;
     el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
@@ -90,39 +91,63 @@ export default function RecentBlogs({ className }: { className?: string }) {
           <div className={`${styles.fadeLeft} ${canScrollLeft ? styles.fadeShow : ""}`} aria-hidden />
           <div className={styles.blogContent} ref={scrollContainerRef}>
             {blogPosts.length > 0 ? (
-              blogPosts.map((post) => (
-                <div key={post.id} className="card">
-                  <div className={styles.blogCard}>
-                    <div className={styles.cardImage}>
-                      {post.image ? (
-                        <img src={post.image} alt={post.title} />
-                      ) : (
-                        <div className={styles.imagePlaceholder}>Blog Image</div>
-                      )}
-                    </div>
-                    <div className={styles.blogBody}>
-                      <div className={styles.blogMeta}>
-                        <span className={styles.blogDate}>
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                          })}
-                        </span>
-                        <span className={styles.blogReadTime}>{post.readTime}</span>
+              blogPosts.map((post) => {
+                const href = post.slug || `/blog/${post.id}`;
+                return (
+                  <Link key={post.id} href={href} className={styles.blogCard}>
+                    {post.comingSoon && (
+                      <div className={styles.comingSoon}>
+                        <span className={styles.comingSoonBadge}>Coming Soon</span>
                       </div>
-                      <h3 className={styles.blogTitle}>{post.title}</h3>
-                      <p className={styles.blogExcerpt}>{post.excerpt}</p>
-                      <Link href={`/blog/${post.id}`} className={styles.blogLink}>
-                        Read More
+                    )}
+                    <div className={styles.blogImage}>
+                      <div className={styles.imagePlaceholder}>
+                        {post.image ? (
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className={styles.blogImg}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 40vw"
+                          />
+                        ) : (
+                          <span>Blog Image</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className={styles.blogCardContent}>
+                      <div className={styles.blogCardHeader}>
+                        <h3 className={styles.blogTitle}>{post.title}</h3>
+                        <div className={styles.blogMeta}>
+                          <span className={styles.blogDate}>
+                            {new Date(post.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                          </span>
+                          {!post.comingSoon && (
+                            <span className={styles.blogReadTime}>{post.readTime}</span>
+                          )}
+                        </div>
+                      </div>
+                      <p className={styles.blogDescription}>{post.excerpt}</p>
+                      <div className={styles.blogFooter}>
+                        <div className={styles.blogTags}>
+                          {post.tags.slice(0, 2).map((tag, index) => (
+                            <span key={index} className={styles.blogTag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                         <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
-                      </Link>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))
+                  </Link>
+                );
+              })
             ) : (
               <div className={styles.emptyState}>
                 <p>Big things are coming... soon!</p>
