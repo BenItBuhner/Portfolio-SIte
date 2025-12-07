@@ -6,7 +6,7 @@ const imgGroup35 = "/assets/group35.svg";
 const SKILLS = [
   {
     title: "Primary Languages:",
-    description: "Python, TypeScript",
+    description: "Python, JavaScript and TypeScript",
   },
   {
     title: "Full-Stack Frameworks:",

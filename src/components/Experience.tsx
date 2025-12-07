@@ -4,7 +4,7 @@ import styles from "./Experience.module.css";
 const imgGroup34Experience = "/assets/group34-experience.svg";
 
 const INTRO_TEXT =
-  "While my experience is limited (due to school/projects), I have still contributed a few key things, all of which are useful towards ML, agents, interfaces, and design.";
+  "While my experience is limited (due to school/projects), I have still have contributed a few key things, all of which are useful towards ML, agents, interfaces, and design.";
 
 const EXPERIENCE_ITEMS = [
   {
@@ -12,8 +12,8 @@ const EXPERIENCE_ITEMS = [
     text: "I have made prior environments, such as the \"UBench\" environment for Prime Intellect's \"prime-environments,\" and am still working on it.",
   },
   {
-    title: "Training Models:",
-    text: "I have made a few models, fine-tuned/distilled others, and also deployed some for Aviate (in incognito right now).",
+    title: "Experimenting With and Training Models:",
+    text: "I have made a few models, fine-tuned and distilled others as well.",
   },
   {
     title: "Developing Agents & Frameworks:",

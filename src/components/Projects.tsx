@@ -8,12 +8,6 @@ const INTRO_TEXT =
 
 const PROJECTS = [
   {
-    title: "Athena Recursive:",
-    description:
-      "Trained a high-performance ~256M parameter SLM using new and unique \"recursive\" and synthetic data training methods such as TRM, the SYNTH dataset, and rigorous RL.",
-    subItems: [],
-  },
-  {
     title: "Athena Cloud Code Agent:",
     description:
       "Architected a multi-agent orchestration system capable of long-horizon software engineering tasks. Can edit, test, debug, and iterate, file PRs for your autonomously.",
