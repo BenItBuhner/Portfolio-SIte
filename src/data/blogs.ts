@@ -22,7 +22,7 @@ const blogs: Blog[] = [
     readTime: "Coming soon",
     tags: ["Placeholder"],
     slug: "/blog/placeholder",
-    image: "/projects/headers/how-use-vs-code-anywhere-header.png",
+    image: "/blogs/vs-code-anywhere/how-use-vs-code-anywhere-header.png",
     comingSoon: true,
   },
 ];
