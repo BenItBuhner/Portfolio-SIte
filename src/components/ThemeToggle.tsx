@@ -11,7 +11,8 @@ export default function ThemeToggle() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    const timer = setTimeout(() => setIsClient(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const activeMode: Mode = isClient ? (source === "system" ? "system" : theme) : "system";

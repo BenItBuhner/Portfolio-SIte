@@ -5,8 +5,6 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
-import styles from "./page.module.css";
-
 export default function OverviewPage() {
   return (
     <div className="page-container">

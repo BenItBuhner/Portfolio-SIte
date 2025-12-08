@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllProjects } from '@/data/projects';
 import { getAllBlogs } from '@/data/blogs';
-import { getTimeline } from '@/data/timeline';
 
 /**
  * Safely extracts the final segment from a blog slug for URL construction.
@@ -91,9 +90,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     };
   });
-
-  // Timeline entries count (for reference, timeline is a single page)
-  const _timelineCount = getTimeline().length;
 
   return [...staticPages, ...projectPages, ...blogPages];
 }

@@ -33,7 +33,7 @@ export default function PortfolioLandingPage() {
                 </div>
               </div>
               <div className={`${styles.heroText} animate-fade-in-up animate-delay-400`}>
-                <h1 className={styles.title}>Hi, I'm Bennett!</h1>
+                <h1 className={styles.title}>Hi, I&apos;m Bennett!</h1>
                 <p className={styles.subtitle}>AI Engineer, Developer, Machine Learning Enthusiast</p>
                 <p className={styles.description}>
                   Pushing the boundaries of generative AI/RL, design, and tech.

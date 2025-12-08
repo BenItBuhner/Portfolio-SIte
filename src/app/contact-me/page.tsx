@@ -10,11 +10,11 @@ export default function ContactMePage() {
         <section className={`${styles.contactSection} animate-fade-in-up animate-delay-200`}>
           <div className="header-wrapper">
             <h1 className="header-title">Contact Me</h1>
-            <p className="header-subtitle">Get In Touch • Let's Connect</p>
+            <p className="header-subtitle">Get In Touch • Let&apos;s Connect</p>
           </div>
           <div className={styles.contactContent}>
             <p className={`${styles.introText} animate-fade-in-up animate-delay-300`}>
-              I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and AI.
+              I&apos;m always open to discussing new opportunities, collaborations, or just having a chat about technology and AI.
               Feel free to reach out through any of the methods below!
             </p>
 

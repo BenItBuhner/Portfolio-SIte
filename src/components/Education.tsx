@@ -9,7 +9,7 @@ const INTRO_TEXT =
 const EDUCATION_ITEMS = [
   {
     title: "High School:",
-    text: "I am currently enrolled at Adrian, MN's high school, currently in grade 12 and nearing the end of semester one.",
+    text: "I am currently enrolled at Adrian, MN&apos;s high school, currently in grade 12 and nearing the end of semester one.",
   },
   {
     title: "College:",
@@ -19,7 +19,7 @@ const EDUCATION_ITEMS = [
 
 const OUTRO_TEXT = (
   <>
-    This may sound immensely ambiguous, but I have already found I've been able to take{" "}
+    This may sound immensely ambiguous, but I have already found I&apos;ve been able to take{" "}
     <strong>five three-point classes concurrently</strong> and still have time for a full-time job; I want to get ahead
     and really make a difference where it matters.
   </>

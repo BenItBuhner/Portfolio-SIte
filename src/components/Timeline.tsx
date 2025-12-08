@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import styles from "./Timeline.module.css";
-import { getTimeline, TimelineEntry } from "@/data/timeline";
+import { getTimeline } from "@/data/timeline";
 
 const FILTERS: string[] = [
   "All",

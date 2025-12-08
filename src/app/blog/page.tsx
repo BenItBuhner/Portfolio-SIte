@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogCard from "@/components/BlogCard";
-import { getAllBlogs, Blog } from "@/data/blogs";
+import { getAllBlogs } from "@/data/blogs";
 import styles from "./page.module.css";
 
 export default function BlogPage() {
@@ -37,7 +37,7 @@ export default function BlogPage() {
           <div className={styles.blogContent}>
             <p className={styles.introText}>
               Welcome to my blog where I share insights, tutorials, and thoughts about AI, machine learning, and software development.
-              Here you'll find technical deep-dives, industry analysis, and practical guides.
+              Here you&apos;ll find technical deep-dives, industry analysis, and practical guides.
             </p>
 
             {/* Search Controls */}

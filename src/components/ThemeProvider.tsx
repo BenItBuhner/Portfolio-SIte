@@ -66,7 +66,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       media.addEventListener("change", listener);
     } else {
       // Fallback for older browsers
-      // @ts-ignore
+      // @ts-expect-error legacy addListener for MediaQueryList
       media.addListener(listener);
     }
 
@@ -74,7 +74,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       if (media.removeEventListener) {
         media.removeEventListener("change", listener);
       } else {
-        // @ts-ignore
+        // @ts-expect-error legacy removeListener for MediaQueryList
         media.removeListener(listener);
       }
     };

@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
-import { getAllProjects, Project } from "@/data/projects";
+import { getAllProjects } from "@/data/projects";
 import styles from "./page.module.css";
 
 export default function ProjectsPage() {
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
           </div>
           <div className={styles.projectsContent}>
             <p className={styles.introText}>
-              Here are some of the projects I've worked on, ranging from AI and machine learning to distributed systems and web development.
+              Here are some of the projects I&apos;ve worked on, ranging from AI and machine learning to distributed systems and web development.
               Each project represents a unique challenge and learning opportunity.
             </p>
 

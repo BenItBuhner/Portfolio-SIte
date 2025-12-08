@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShareButton from "@/components/ShareButton";
@@ -104,7 +105,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </>
           ) : (
             <div className={styles.content}>
-              Sorry, we couldn't find that project.
+              Sorry, we couldn&apos;t find that project.
             </div>
           )}
         </section>

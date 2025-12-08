@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShareButton from "@/components/ShareButton";
@@ -14,19 +15,19 @@ interface BlogPageProps {
  * Handles edge cases like empty slugs, missing slashes, and undefined values.
  */
 function getBlogSlugSegment(slug: string | undefined): string {
-  if (!slug || typeof slug !== 'string') {
-    return '';
+  if (!slug || typeof slug !== "string") {
+    return "";
   }
   
   // Remove leading/trailing slashes and whitespace
-  const trimmed = slug.trim().replace(/^\/+|\/+$/g, '');
+  const trimmed = slug.trim().replace(/^\/+|\/+$/g, "");
   
   if (!trimmed) {
-    return '';
+    return "";
   }
   
   // Split by '/' and get the last segment
-  const segments = trimmed.split('/').filter(segment => segment.length > 0);
+  const segments = trimmed.split("/").filter(segment => segment.length > 0);
   
   // Return the last segment, or the whole trimmed slug if no slashes found
   return segments.length > 0 ? segments[segments.length - 1] : trimmed;
@@ -38,11 +39,11 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
 
   // Safely construct the blog URL
   const slugSegment = getBlogSlugSegment(blog?.slug);
-  const blogUrl = blog 
-    ? (slugSegment 
+  const blogUrl = blog
+    ? (slugSegment
         ? `https://bennettbuhner.com/blog/${slugSegment}`
         : `https://bennettbuhner.com/blog/${blog.id}`)
-    : 'https://bennettbuhner.com/blog';
+    : "https://bennettbuhner.com/blog";
 
   return (
     <div className="page-container">
@@ -103,7 +104,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
                 <h1 className="header-title">Post not found</h1>
               </div>
               <div className={styles.content}>
-                Sorry, we couldn't find that post.
+                Sorry, we couldn&apos;t find that post.
               </div>
             </>
           )}

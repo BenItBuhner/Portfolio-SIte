@@ -28,12 +28,10 @@ export default function RecentBlogs({ className }: { className?: string }) {
     const el = scrollContainerRef.current;
     if (!el) return;
 
+    const rafInitial = requestAnimationFrame(updateScrollState);
     const checkState = () => {
-      setTimeout(updateScrollState, 100);
+      requestAnimationFrame(updateScrollState);
     };
-
-    updateScrollState();
-    checkState();
 
     el.addEventListener("scroll", updateScrollState);
     window.addEventListener("resize", checkState);
@@ -42,6 +40,7 @@ export default function RecentBlogs({ className }: { className?: string }) {
     resizeObserver.observe(el);
 
     return () => {
+      cancelAnimationFrame(rafInitial);
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", checkState);
       resizeObserver.disconnect();
