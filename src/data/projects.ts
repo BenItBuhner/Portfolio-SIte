@@ -61,7 +61,7 @@ const projects: Project[] = [
 <p>I made this out of a major frustration of mine—I was trying to build new agents off of FastAPI, but every single one was messy, majorly unique, and imperfect in their own annoying ways. But with this, I can create my own customized/personalized agents. Each with their own endpoints, uses, tools, and so on.</p>
 <p>I really hope people find this useful, as while it may not be anything too notable, it takes full advantage of the many offerings of today, such as SSE, HTTP, and other similar MCP implementations, and it could be genuinely useful to people that just want to get a grasp of how to use these unique protocols.</p>
 <p>You can check out the GitHub repository above, and I hope this helps anyone in the future that wants to make their own agent(s), either locally or at production scale.</p>`,
-    image: "/projects/agent-chassis/agent-chassis-header.png",
+    image: "/projects/agent-chassis/agent-chassis-header-v2.png",
     tech: ["FastAPI", "Python", "MCP", "Multi-Agent"],
     github: "https://github.com/BenItBuhner/Agent-Chassis",
     demo: null
