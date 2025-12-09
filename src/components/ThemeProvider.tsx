@@ -62,20 +62,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       applyPreference(event.matches);
     };
 
-    if (media.addEventListener) {
+    if (typeof media.addEventListener === "function") {
       media.addEventListener("change", listener);
-    } else {
-      // Fallback for older browsers
-      // @ts-expect-error legacy addListener for MediaQueryList
-      media.addListener(listener);
+    } else if (typeof (media as MediaQueryList).addListener === "function") {
+      (media as MediaQueryList).addListener(listener);
     }
 
     return () => {
-      if (media.removeEventListener) {
+      if (typeof media.removeEventListener === "function") {
         media.removeEventListener("change", listener);
-      } else {
-        // @ts-expect-error legacy removeListener for MediaQueryList
-        media.removeListener(listener);
+      } else if (typeof (media as MediaQueryList).removeListener === "function") {
+        (media as MediaQueryList).removeListener(listener);
       }
     };
   }, [source]);
