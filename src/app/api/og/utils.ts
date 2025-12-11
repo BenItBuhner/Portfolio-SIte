@@ -41,39 +41,31 @@ export const FONTS = {
 
 /**
  * Read a local image file and convert to base64 data URI.
+ * Works with Node.js runtime in both dev and production on Vercel.
  */
-function getLocalImageAsBase64(imagePath: string): string | null {
+export function getImageAsBase64(imagePath: string | undefined): string | null {
+  if (!imagePath) return null;
+
+  // External URLs - return as-is (will be fetched by @vercel/og)
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+
   try {
-    // Remove leading slash if present
     const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
     const fullPath = join(process.cwd(), 'public', cleanPath);
     const imageBuffer = readFileSync(fullPath);
-    
+
     // Determine MIME type from extension
     const ext = imagePath.split('.').pop()?.toLowerCase();
     let mimeType = 'image/png';
     if (ext === 'jpg' || ext === 'jpeg') mimeType = 'image/jpeg';
     else if (ext === 'gif') mimeType = 'image/gif';
     else if (ext === 'webp') mimeType = 'image/webp';
-    else if (ext === 'svg') mimeType = 'image/svg+xml';
-    
+
     return `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
-  } catch {
+  } catch (e) {
+    console.error(`Failed to load image: ${imagePath}`, e);
     return null;
   }
-}
-
-/**
- * Get image source as base64 for local files, or URL for external images.
- */
-export function getImageSrc(imagePath: string | undefined): string | null {
-  if (!imagePath) return null;
-  
-  // If it's an external URL, return as-is
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath;
-  }
-  
-  // For local images, convert to base64
-  return getLocalImageAsBase64(imagePath);
 }

@@ -6,13 +6,11 @@ import {
   PADDING,
   PROFILE_IMAGE_SIZE,
   FONTS,
-  getImageSrc,
+  getImageAsBase64,
 } from '../utils';
 
-// Use Node.js runtime for file system access
 export const runtime = 'nodejs';
 
-// Page titles for each static page type
 const PAGE_TITLES: Record<string, string> = {
   home: 'My Portfolio',
   homepage: 'My Portfolio',
@@ -32,11 +30,8 @@ export async function GET(request: Request) {
   const type = searchParams.get('type') ?? 'home';
   const customTitle = searchParams.get('title');
 
-  // Use custom title if provided, otherwise lookup from PAGE_TITLES
   const title = customTitle ?? PAGE_TITLES[type.toLowerCase()] ?? 'My Portfolio';
-  
-  // Get profile image as base64
-  const profileImageSrc = getImageSrc('/account-icon.png');
+  const profileImageSrc = getImageAsBase64('/account-icon.png');
 
   return new ImageResponse(
     (
@@ -50,7 +45,7 @@ export async function GET(request: Request) {
           position: 'relative',
         }}
       >
-        {/* Profile image at LEFT (~75% height) */}
+        {/* Profile image at LEFT */}
         <div
           style={{
             display: 'flex',
@@ -102,7 +97,6 @@ export async function GET(request: Request) {
           >
             {title}
           </h1>
-          {/* Tagline under title */}
           <p
             style={{
               ...FONTS.subtitle,
@@ -119,7 +113,6 @@ export async function GET(request: Request) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 16,
             position: 'absolute',
             bottom: PADDING,
             left: PADDING,

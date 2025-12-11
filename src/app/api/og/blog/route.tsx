@@ -8,10 +8,9 @@ import {
   IMAGE_BORDER_RADIUS,
   PROFILE_IMAGE_SIZE,
   FONTS,
-  getImageSrc,
+  getImageAsBase64,
 } from '../utils';
 
-// Use Node.js runtime for file system access
 export const runtime = 'nodejs';
 
 export async function GET(request: Request) {
@@ -19,20 +18,15 @@ export async function GET(request: Request) {
   const id = searchParams.get('id');
 
   const blog = getBlogById(id ?? undefined);
+  const profileImageSrc = getImageAsBase64('/account-icon.png');
 
-  // Get profile image as base64
-  const profileImageSrc = getImageSrc('/account-icon.png');
-
-  // If blog not found or no header image, use fallback (page-style) design
+  // If blog not found or no header image, use fallback design
   if (!blog || !blog.image) {
     const title = blog?.title ?? 'Blog';
     return generateFallbackImage(title, profileImageSrc);
   }
 
-  // Get header image as base64
-  const headerImageSrc = getImageSrc(blog.image);
-
-  // Calculate image dimensions (~75% of height)
+  const headerImageSrc = getImageAsBase64(blog.image);
   const imageHeight = Math.floor((OG_HEIGHT - PADDING * 2) * 0.85);
   const imageWidth = Math.floor(imageHeight * 1.2);
 
@@ -48,7 +42,7 @@ export async function GET(request: Request) {
           position: 'relative',
         }}
       >
-        {/* Header image at LEFT (~75% area) */}
+        {/* Header image at LEFT */}
         <div
           style={{
             display: 'flex',
@@ -101,7 +95,7 @@ export async function GET(request: Request) {
           </h1>
         </div>
 
-        {/* Small profile image / branding at bottom RIGHT */}
+        {/* Small profile + name at bottom RIGHT */}
         <div
           style={{
             display: 'flex',
@@ -142,11 +136,6 @@ export async function GET(request: Request) {
   );
 }
 
-/**
- * Fallback image when blog has no header image.
- * Shows large profile picture on LEFT, title on RIGHT.
- * NO small profile picture since the main image IS the profile picture.
- */
 function generateFallbackImage(title: string, profileImageSrc: string | null) {
   return new ImageResponse(
     (
@@ -214,12 +203,11 @@ function generateFallbackImage(title: string, profileImageSrc: string | null) {
           </h1>
         </div>
 
-        {/* Branding at bottom left - just website, no profile pic */}
+        {/* Website at bottom left */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 16,
             position: 'absolute',
             bottom: PADDING,
             left: PADDING,
