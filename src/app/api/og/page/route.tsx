@@ -9,7 +9,7 @@ import {
   getImageAsBase64,
 } from '../utils';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 const PAGE_TITLES: Record<string, string> = {
   home: 'My Portfolio',
@@ -26,14 +26,15 @@ const PAGE_TITLES: Record<string, string> = {
 };
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const type = searchParams.get('type') ?? 'home';
-  const customTitle = searchParams.get('title');
+  try {
+    const { searchParams } = new URL(request.url);
+    const type = searchParams.get('type') ?? 'home';
+    const customTitle = searchParams.get('title');
 
-  const title = customTitle ?? PAGE_TITLES[type.toLowerCase()] ?? 'My Portfolio';
-  const profileImageSrc = getImageAsBase64('/account-icon.png');
+    const title = customTitle ?? PAGE_TITLES[type.toLowerCase()] ?? 'My Portfolio';
+    const profileImageSrc = getImageAsBase64('/account-icon.png');
 
-  return new ImageResponse(
+    return new ImageResponse(
     (
       <div
         style={{
@@ -135,4 +136,7 @@ export async function GET(request: Request) {
       height: OG_HEIGHT,
     }
   );
+  } catch (e) {
+    return new Response(`Error generating OG image: ${e}`, { status: 500 });
+  }
 }

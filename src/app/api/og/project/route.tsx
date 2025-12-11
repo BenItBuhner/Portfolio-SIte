@@ -11,11 +11,12 @@ import {
   getImageAsBase64,
 } from '../utils';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
 
   const profileImageSrc = getImageAsBase64('/account-icon.png');
 
@@ -139,6 +140,9 @@ export async function GET(request: Request) {
       height: OG_HEIGHT,
     }
   );
+  } catch (e) {
+    return new Response(`Error generating OG image: ${e}`, { status: 500 });
+  }
 }
 
 function generateFallbackImage(title: string, profileImageSrc: string | null) {

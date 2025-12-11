@@ -2,8 +2,6 @@
  * Shared utilities and constants for OG image generation.
  * These values mirror the CSS design system in globals.css.
  */
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 // Light theme colors (matching :root in globals.css)
 export const THEME = {
@@ -40,32 +38,33 @@ export const FONTS = {
 };
 
 /**
- * Read a local image file and convert to base64 data URI.
- * Works with Node.js runtime in both dev and production on Vercel.
+ * Get base URL for the site.
+ * On Vercel: uses VERCEL_URL or custom domain
+ * In dev: uses localhost (images won't load in dev, but will work in production)
+ */
+function getBaseUrl(): string {
+  // Vercel provides this env var
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // Fallback to production domain
+  return 'https://bennettbuhner.com';
+}
+
+/**
+ * Get absolute URL for an image.
+ * Returns full URL that @vercel/og Edge runtime can fetch.
  */
 export function getImageAsBase64(imagePath: string | undefined): string | null {
   if (!imagePath) return null;
 
-  // External URLs - return as-is (will be fetched by @vercel/og)
+  // External URLs - return as-is
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
     return imagePath;
   }
 
-  try {
-    const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
-    const fullPath = join(process.cwd(), 'public', cleanPath);
-    const imageBuffer = readFileSync(fullPath);
-
-    // Determine MIME type from extension
-    const ext = imagePath.split('.').pop()?.toLowerCase();
-    let mimeType = 'image/png';
-    if (ext === 'jpg' || ext === 'jpeg') mimeType = 'image/jpeg';
-    else if (ext === 'gif') mimeType = 'image/gif';
-    else if (ext === 'webp') mimeType = 'image/webp';
-
-    return `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
-  } catch (e) {
-    console.error(`Failed to load image: ${imagePath}`, e);
-    return null;
-  }
+  // Convert to absolute URL
+  const baseUrl = getBaseUrl();
+  const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+  return `${baseUrl}${cleanPath}`;
 }
