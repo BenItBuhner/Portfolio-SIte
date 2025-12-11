@@ -64,7 +64,9 @@ export function BlogStructuredData({ blog }: BlogStructuredDataProps) {
     "articleSection": "Technology",
     "wordCount": blog.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
     "timeRequired": `PT${blog.readTime.split(' ')[0]}M`,
-    "image": blog.image || "https://bennettbuhner.com/og-image.png",
+    "image": blog.image 
+      ? `https://bennettbuhner.com${blog.image}` 
+      : `https://bennettbuhner.com/api/og/blog?id=${blog.id}`,
   };
 
   return (
@@ -91,6 +93,9 @@ export function ProjectStructuredData({ project }: ProjectStructuredDataProps) {
     "codeRepository": project.github,
     "programmingLanguage": project.tech.join(", "),
     "url": `https://bennettbuhner.com/projects/${project.id}`,
+    "image": project.image 
+      ? `https://bennettbuhner.com${project.image}` 
+      : `https://bennettbuhner.com/api/og/project?id=${project.id}`,
     "dateCreated": new Date().toISOString(),
     "license": "https://opensource.org/licenses/MIT",
     "keywords": project.tech.join(", "),
@@ -154,7 +159,7 @@ export function PersonStructuredData() {
     "jobTitle": "AI Engineer",
     "description": "AI Engineer, Developer, Machine Learning Enthusiast. Pushing the boundaries of generative AI/RL, design, and tech.",
     "url": "https://bennettbuhner.com",
-    "image": "https://bennettbuhner.com/og-image.png",
+    "image": "https://bennettbuhner.com/api/og/page?type=home",
     "sameAs": [
       "https://github.com/BenItBuhner",
       "https://x.com/BennettBuhner",

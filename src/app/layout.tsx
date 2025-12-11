@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Bennett Buhner",
     images: [
       {
-        url: "/og-image.png",
+        url: "/api/og/page?type=home",
         width: 1200,
         height: 630,
         alt: "Bennett Buhner - Portfolio",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bennett Buhner - Portfolio",
     description: "AI Engineer, Developer, Machine Learning Enthusiast. Pushing the boundaries of generative AI/RL, design, and tech.",
-    images: ["/og-image.png"],
+    images: ["/api/og/page?type=home"],
     creator: "@BennettBuhner",
   },
   robots: {

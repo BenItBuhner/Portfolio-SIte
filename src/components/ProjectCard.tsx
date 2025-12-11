@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./ProjectCard.module.css";
 
 interface Project {
@@ -46,7 +47,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
         <div className={styles.projectHeader}>
           <h3 className={styles.projectTitle}>{project.title}</h3>
           <div className={styles.projectMeta}>
-            <span>{new Date(project.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+            <span>{formatDateUTC(project.date)}</span>
           </div>
         </div>
 

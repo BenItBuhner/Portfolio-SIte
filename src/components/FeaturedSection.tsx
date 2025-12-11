@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/data/projects";
+import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./FeaturedSection.module.css";
 
 
@@ -118,11 +119,7 @@ export default function FeaturedSection({ className }: { className?: string }) {
                       <h3 className={styles.featuredTitle}>{project.title}</h3>
                       <div className={styles.featuredMeta}>
                         <span>
-                          {new Date(project.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
+                          {formatDateUTC(project.date)}
                         </span>
                       </div>
                     </div>

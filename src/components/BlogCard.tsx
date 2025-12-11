@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./BlogCard.module.css";
 
 interface Blog {
@@ -51,11 +52,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
         <div className={styles.blogHeader}>
           <div className={styles.blogMeta}>
             <span className={styles.blogDate}>
-              {new Date(blog.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
+              {formatDateUTC(blog.date)}
             </span>
             {!blog.comingSoon && (
               <span className={styles.blogReadTime}>{blog.readTime}</span>

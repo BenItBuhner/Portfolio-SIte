@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllBlogs } from "@/data/blogs";
+import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./RecentBlogs.module.css";
 
 export default function RecentBlogs({ className }: { className?: string }) {
@@ -119,11 +120,7 @@ export default function RecentBlogs({ className }: { className?: string }) {
                         <h3 className={styles.blogTitle}>{post.title}</h3>
                         <div className={styles.blogMeta}>
                           <span className={styles.blogDate}>
-                            {new Date(post.date).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            })}
+                            {formatDateUTC(post.date)}
                           </span>
                           {!post.comingSoon && (
                             <span className={styles.blogReadTime}>{post.readTime}</span>

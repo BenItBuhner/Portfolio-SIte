@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShareButton from "@/components/ShareButton";
 import { BlogStructuredData } from "@/components/StructuredData";
 import { getBlogById } from "@/data/blogs";
+import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./page.module.css";
 
 interface BlogPageProps {
@@ -31,6 +33,50 @@ function getBlogSlugSegment(slug: string | undefined): string {
   
   // Return the last segment, or the whole trimmed slug if no slashes found
   return segments.length > 0 ? segments[segments.length - 1] : trimmed;
+}
+
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const { postId } = await params;
+  const blog = getBlogById(postId);
+
+  if (!blog) {
+    return {
+      title: "Blog Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  const slugSegment = getBlogSlugSegment(blog.slug);
+  const canonicalUrl = `https://bennettbuhner.com/blog/${slugSegment || blog.id}`;
+  const ogImageUrl = `/api/og/blog?id=${blog.id}`;
+
+  return {
+    title: blog.title,
+    description: blog.excerpt,
+    openGraph: {
+      title: blog.title,
+      description: blog.excerpt,
+      url: canonicalUrl,
+      type: "article",
+      publishedTime: blog.date,
+      authors: ["Bennett Buhner"],
+      tags: blog.tags,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.excerpt,
+      images: [ogImageUrl],
+    },
+  };
 }
 
 export default async function BlogDetailPage({ params }: BlogPageProps) {
@@ -61,11 +107,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
                 <div className={styles.metaLeft}>
                   <div className={styles.meta}>
                     <span>
-                      {new Date(blog.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      })}
+                      {formatDateUTC(blog.date)}
                     </span>
                     <span>•</span>
                     <span>{blog.readTime}</span>
