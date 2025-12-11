@@ -6,7 +6,7 @@ import {
   PADDING,
   PROFILE_IMAGE_SIZE,
   FONTS,
-  getImageAsBase64,
+  getImageUrl,
 } from '../utils';
 
 export const runtime = 'edge';
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
     const customTitle = searchParams.get('title');
 
     const title = customTitle ?? PAGE_TITLES[type.toLowerCase()] ?? 'My Portfolio';
-    const profileImageSrc = getImageAsBase64('/account-icon.png');
+    const profileImageSrc = getImageUrl('/account-icon.png');
 
     return new ImageResponse(
     (

@@ -8,7 +8,7 @@ import {
   IMAGE_BORDER_RADIUS,
   PROFILE_IMAGE_SIZE,
   FONTS,
-  getImageAsBase64,
+  getImageUrl,
 } from '../utils';
 
 export const runtime = 'edge';
@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
-  const profileImageSrc = getImageAsBase64('/account-icon.png');
+  const profileImageSrc = getImageUrl('/account-icon.png');
 
   if (!id) {
     return generateFallbackImage('Projects', profileImageSrc);
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
     return generateFallbackImage(title, profileImageSrc);
   }
 
-  const headerImageSrc = getImageAsBase64(project.image);
+  const headerImageSrc = getImageUrl(project.image);
   const imageHeight = Math.floor((OG_HEIGHT - PADDING * 2) * 0.85);
   const imageWidth = Math.floor(imageHeight * 1.2);
 

@@ -38,24 +38,43 @@ export const FONTS = {
 };
 
 /**
- * Get base URL for the site.
- * On Vercel: uses VERCEL_URL or custom domain
- * In dev: uses localhost (images won't load in dev, but will work in production)
+ * Get base URL - always use production domain for reliability
  */
 function getBaseUrl(): string {
-  // Vercel provides this env var
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  // Fallback to production domain
+  // Always use the production domain - this is more reliable than VERCEL_URL
+  // which can point to preview deployments
   return 'https://bennettbuhner.com';
 }
 
 /**
- * Get absolute URL for an image.
- * Returns full URL that @vercel/og Edge runtime can fetch.
+ * Fetch an image and return as ArrayBuffer for @vercel/og
  */
-export function getImageAsBase64(imagePath: string | undefined): string | null {
+export async function fetchImageAsArrayBuffer(imagePath: string | undefined): Promise<ArrayBuffer | null> {
+  if (!imagePath) return null;
+
+  try {
+    let url = imagePath;
+    
+    // Convert relative paths to absolute URLs
+    if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://')) {
+      const baseUrl = getBaseUrl();
+      const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+      url = `${baseUrl}${cleanPath}`;
+    }
+
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    
+    return await response.arrayBuffer();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get image URL for use in img src (simpler approach)
+ */
+export function getImageUrl(imagePath: string | undefined): string | null {
   if (!imagePath) return null;
 
   // External URLs - return as-is
@@ -63,7 +82,7 @@ export function getImageAsBase64(imagePath: string | undefined): string | null {
     return imagePath;
   }
 
-  // Convert to absolute URL
+  // Convert to absolute URL using production domain
   const baseUrl = getBaseUrl();
   const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
   return `${baseUrl}${cleanPath}`;
