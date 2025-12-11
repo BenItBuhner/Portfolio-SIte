@@ -3,6 +3,9 @@
  * These values mirror the CSS design system in globals.css.
  */
 
+import { readFile } from 'fs/promises';
+import { join } from 'path';
+
 // Light theme colors (matching :root in globals.css)
 export const THEME = {
   pageBg: '#fffef2',
@@ -38,52 +41,61 @@ export const FONTS = {
 };
 
 /**
- * Get base URL - always use production domain for reliability
+ * Get content type from file extension
  */
-function getBaseUrl(): string {
-  // Always use the production domain - this is more reliable than VERCEL_URL
-  // which can point to preview deployments
-  return 'https://bennettbuhner.com';
+function getContentType(filePath: string): string {
+  const ext = filePath.toLowerCase().split('.').pop();
+  switch (ext) {
+    case 'png': return 'image/png';
+    case 'jpg':
+    case 'jpeg': return 'image/jpeg';
+    case 'gif': return 'image/gif';
+    case 'webp': return 'image/webp';
+    case 'svg': return 'image/svg+xml';
+    default: return 'image/png';
+  }
 }
 
 /**
- * Fetch an image and return as ArrayBuffer for @vercel/og
+ * Load an image from the public folder and return as base64 data URL.
+ * Works in both local development and Vercel production (Node.js runtime).
  */
-export async function fetchImageAsArrayBuffer(imagePath: string | undefined): Promise<ArrayBuffer | null> {
+export async function loadImageAsBase64(imagePath: string | undefined): Promise<string | null> {
   if (!imagePath) return null;
 
   try {
-    let url = imagePath;
+    // Remove leading slash if present
+    const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
     
-    // Convert relative paths to absolute URLs
-    if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://')) {
-      const baseUrl = getBaseUrl();
-      const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-      url = `${baseUrl}${cleanPath}`;
+    // In Vercel, files are in the root. In local dev, they're in public/
+    // Try multiple paths
+    const possiblePaths = [
+      join(process.cwd(), 'public', cleanPath),  // Local dev
+      join(process.cwd(), cleanPath),             // Vercel production
+    ];
+
+    let fileBuffer: Buffer | null = null;
+    
+    for (const fullPath of possiblePaths) {
+      try {
+        fileBuffer = await readFile(fullPath);
+        break;
+      } catch {
+        // Try next path
+      }
     }
 
-    const response = await fetch(url);
-    if (!response.ok) return null;
+    if (!fileBuffer) {
+      console.error(`Image not found: ${imagePath}`);
+      return null;
+    }
+
+    const base64 = fileBuffer.toString('base64');
+    const contentType = getContentType(cleanPath);
     
-    return await response.arrayBuffer();
-  } catch {
+    return `data:${contentType};base64,${base64}`;
+  } catch (error) {
+    console.error('Failed to load image as base64:', error);
     return null;
   }
-}
-
-/**
- * Get image URL for use in img src (simpler approach)
- */
-export function getImageUrl(imagePath: string | undefined): string | null {
-  if (!imagePath) return null;
-
-  // External URLs - return as-is
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath;
-  }
-
-  // Convert to absolute URL using production domain
-  const baseUrl = getBaseUrl();
-  const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-  return `${baseUrl}${cleanPath}`;
 }

@@ -1,4 +1,4 @@
-import { ImageResponse } from '@vercel/og';
+import { ImageResponse } from 'next/og';
 import {
   THEME,
   OG_WIDTH,
@@ -6,10 +6,11 @@ import {
   PADDING,
   PROFILE_IMAGE_SIZE,
   FONTS,
-  getImageUrl,
+  loadImageAsBase64,
 } from '../utils';
 
-export const runtime = 'edge';
+// Use Node.js runtime to access filesystem for images
+export const runtime = 'nodejs';
 
 const PAGE_TITLES: Record<string, string> = {
   home: 'My Portfolio',
@@ -32,110 +33,112 @@ export async function GET(request: Request) {
     const customTitle = searchParams.get('title');
 
     const title = customTitle ?? PAGE_TITLES[type.toLowerCase()] ?? 'My Portfolio';
-    const profileImageSrc = getImageUrl('/account-icon.png');
+    
+    // Load profile image as base64 from filesystem
+    const profileImageBase64 = await loadImageAsBase64('/account-icon.png');
 
     return new ImageResponse(
-    (
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          height: '100%',
-          backgroundColor: THEME.pageBg,
-          padding: PADDING,
-          position: 'relative',
-        }}
-      >
-        {/* Profile image at LEFT */}
+      (
         <div
           style={{
             display: 'flex',
-            position: 'absolute',
-            top: PADDING,
-            left: PADDING,
-            width: PROFILE_IMAGE_SIZE,
-            height: PROFILE_IMAGE_SIZE,
-            overflow: 'hidden',
-            borderRadius: '50%',
-            border: `2px solid ${THEME.borderSubtle}`,
-            backgroundColor: THEME.surface,
+            width: '100%',
+            height: '100%',
+            backgroundColor: THEME.pageBg,
+            padding: PADDING,
+            position: 'relative',
           }}
         >
-          {profileImageSrc && (
-            <img
-              src={profileImageSrc}
-              width={PROFILE_IMAGE_SIZE}
-              height={PROFILE_IMAGE_SIZE}
+          {/* Profile image at LEFT */}
+          <div
+            style={{
+              display: 'flex',
+              position: 'absolute',
+              top: PADDING,
+              left: PADDING,
+              width: PROFILE_IMAGE_SIZE,
+              height: PROFILE_IMAGE_SIZE,
+              overflow: 'hidden',
+              borderRadius: '50%',
+              border: `2px solid ${THEME.borderSubtle}`,
+              backgroundColor: THEME.surface,
+            }}
+          >
+            {profileImageBase64 && (
+              <img
+                src={profileImageBase64}
+                width={PROFILE_IMAGE_SIZE}
+                height={PROFILE_IMAGE_SIZE}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            )}
+          </div>
+
+          {/* Title and tagline at RIGHT */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              position: 'absolute',
+              top: PADDING,
+              left: PADDING + PROFILE_IMAGE_SIZE + 40,
+              right: PADDING,
+              justifyContent: 'center',
+              height: PROFILE_IMAGE_SIZE,
+            }}
+          >
+            <h1
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                ...FONTS.title,
+                color: THEME.textPrimary,
+                margin: 0,
+                letterSpacing: '-0.02em',
               }}
-            />
-          )}
-        </div>
+            >
+              {title}
+            </h1>
+            <p
+              style={{
+                ...FONTS.subtitle,
+                color: THEME.textSecondary,
+                marginTop: 16,
+              }}
+            >
+              AI Engineer • Developer • Machine Learning Enthusiast
+            </p>
+          </div>
 
-        {/* Title and tagline at RIGHT */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'absolute',
-            top: PADDING,
-            left: PADDING + PROFILE_IMAGE_SIZE + 40,
-            right: PADDING,
-            justifyContent: 'center',
-            height: PROFILE_IMAGE_SIZE,
-          }}
-        >
-          <h1
+          {/* Branding at bottom left */}
+          <div
             style={{
-              ...FONTS.title,
-              color: THEME.textPrimary,
-              margin: 0,
-              letterSpacing: '-0.02em',
+              display: 'flex',
+              alignItems: 'center',
+              position: 'absolute',
+              bottom: PADDING,
+              left: PADDING,
             }}
           >
-            {title}
-          </h1>
-          <p
-            style={{
-              ...FONTS.subtitle,
-              color: THEME.textSecondary,
-              marginTop: 16,
-            }}
-          >
-            AI Engineer • Developer • Machine Learning Enthusiast
-          </p>
+            <span
+              style={{
+                ...FONTS.subtitle,
+                color: THEME.textSecondary,
+                fontSize: 20,
+              }}
+            >
+              bennettbuhner.com
+            </span>
+          </div>
         </div>
-
-        {/* Branding at bottom left */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            position: 'absolute',
-            bottom: PADDING,
-            left: PADDING,
-          }}
-        >
-          <span
-            style={{
-              ...FONTS.subtitle,
-              color: THEME.textSecondary,
-              fontSize: 20,
-            }}
-          >
-            bennettbuhner.com
-          </span>
-        </div>
-      </div>
-    ),
-    {
-      width: OG_WIDTH,
-      height: OG_HEIGHT,
-    }
-  );
+      ),
+      {
+        width: OG_WIDTH,
+        height: OG_HEIGHT,
+      }
+    );
   } catch (e) {
     return new Response(`Error generating OG image: ${e}`, { status: 500 });
   }
