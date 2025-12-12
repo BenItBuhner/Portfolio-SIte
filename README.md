@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website built with **Next.js 16**, **TypeScript**, and **CSS Modules**. Features a clean design with light/dark theme support, PWA capabilities, and SEO optimization.
 
+![Hero Section](assets/readme/hero-section.png "Hero Section")
+
 ## Overview
 
 - **Next.js 16** with App Router
