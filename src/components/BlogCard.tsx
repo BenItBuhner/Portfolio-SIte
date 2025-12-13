@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Image from "next/image";
 import { formatDateUTC } from "@/lib/dateUtils";
 import styles from "./BlogCard.module.css";
 
@@ -39,13 +39,19 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
         </div>
       )}
       <div className={styles.blogImage}>
-        {blog.image ? (
-          <img src={blog.image} alt={blog.title} />
-        ) : (
-          <div className={styles.imagePlaceholder}>
-            Blog Image
-          </div>
-        )}
+        <div className={styles.imagePlaceholder}>
+          {blog.image ? (
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              fill
+              className={styles.blogImg}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <span>Blog Image</span>
+          )}
+        </div>
       </div>
 
       <div className={styles.blogContent}>
