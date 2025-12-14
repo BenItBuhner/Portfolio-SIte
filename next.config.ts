@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import withPWA from "next-pwa";
 
 const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
   reactStrictMode: true,
@@ -11,22 +10,4 @@ const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
     : undefined,
 };
 
-export default withPWA({
-  dest: "public",
-  // SW should only register in production builds to avoid reload loops in dev
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-  runtimeCaching: [
-    {
-      urlPattern: /^https?.*/,
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "offlineCache",
-        expiration: {
-          maxEntries: 200,
-        },
-      },
-    },
-  ],
-})(nextConfig);
+export default nextConfig;

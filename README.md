@@ -1,6 +1,6 @@
 # Bennett Buhner - Portfolio Site
 
-A modern, responsive portfolio website built with **Next.js 16**, **TypeScript**, and **CSS Modules**. Features a clean design with light/dark theme support, PWA capabilities, and SEO optimization.
+A modern, responsive portfolio website built with **Next.js 16**, **TypeScript**, and **CSS Modules**. Features a clean design with light/dark theme support and SEO optimization.
 
 ![Hero Section](assets/readme/hero-section.png "Hero Section")
 
@@ -10,7 +10,6 @@ A modern, responsive portfolio website built with **Next.js 16**, **TypeScript**
 - **TypeScript** for type safety
 - **CSS Modules** for scoped, maintainable styles
 - **Light/Dark Theme** with system preference detection
-- **PWA Support** via `next-pwa` (offline-capable)
 - **SEO Optimized** with structured data (JSON-LD), sitemap, and robots.txt
 - **Responsive Design** for all device sizes
 - **Accessible** with semantic HTML and ARIA attributes
