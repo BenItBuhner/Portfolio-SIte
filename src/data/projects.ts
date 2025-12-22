@@ -64,13 +64,13 @@ const projects: Project[] = [
     image: "/projects/agent-chassis/agent-chassis-header-v2.png",
     tech: ["FastAPI", "Python", "MCP", "Multi-Agent"],
     github: "https://github.com/BenItBuhner/Agent-Chassis",
-    demo: null
+    demo: null,
   },
   {
     id: 5,
-    title: "Model Proxy & Claude Code Link",
+    title: "Model Proxy (With Claude Code)",
     description:
-      "Resilient inference proxy with API key/provider/model fallbacks, forked to plug any model into Claude Code with minimal setup.",
+      "Resilient inference proxy with API key/provider/model fallbacks, optimized to plug any model into Claude Code with minimal setup.",
     date: "2025-02-01",
     content: `
 <h2>The Pain With Claude Code & Similar Tools</h2>
@@ -92,7 +92,19 @@ const projects: Project[] = [
     image: "/projects/model-proxy/claude-code-tunnel-header.png",
     tech: ["Python", "FastAPI", "OpenAI API", "Anthropic API"],
     github: "https://github.com/BenItBuhner/model-proxy",
-    demo: null
+    demo: null,
+  },
+  {
+    id: 6,
+    title: "Noetic",
+    description:
+      "An open-source alternative to Notion, Linear, Todoist, and AI-powered assistants, unifying work management and AI tools into one seamless experience.",
+    date: "2025-12-19",
+    image: "/projects/noetic/noetic-header.png",
+    tech: ["Next.js", "TypeScript", "AI", "Productivity"],
+    github: "https://github.com/BenItBuhner/noetic",
+    demo: null,
+    comingSoon: true,
   },
   /*
   {
@@ -114,15 +126,16 @@ export function getAllProjects(): Project[] {
 export function getProjectById(idOrSlug: string): Project | undefined {
   const numeric = Number(idOrSlug);
   if (!Number.isNaN(numeric)) {
-    return projects.find(p => p.id === numeric);
+    return projects.find((p) => p.id === numeric);
   }
   // optional slug matching if provided in future
-  return projects.find(p => (p.slug && (p.slug === idOrSlug || p.slug?.split("/").pop() === idOrSlug)));
+  return projects.find(
+    (p) =>
+      p.slug && (p.slug === idOrSlug || p.slug?.split("/").pop() === idOrSlug),
+  );
 }
 
 export function getFeaturedProjects(): Project[] {
   // Return all projects as featured projects
   return projects;
 }
-
-
