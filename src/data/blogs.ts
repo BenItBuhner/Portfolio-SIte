@@ -43,7 +43,7 @@ const blogs: Blog[] = [
 
 <ol>
 <li><strong>Highlight the text to correct:</strong> This will be the text parsed to Groq for text text correction.</li>
-<li><strong>Press the keyboard shortcut:</strong> It is simply <code>Win + Shift + R</code> to trigger the correction.</li>
+<li><strong>Press the keyboard shortcut:</strong> It is simply <code>Ctrl + Alt + R</code> to trigger the correction.</li>
 </ol>
 
 <p>And that is it! P.S. that GIF you see above is <em>real-time</em>, no speed ups, no tricks.</p>
