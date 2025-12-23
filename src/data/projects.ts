@@ -90,10 +90,17 @@ const projects: Project[] = [
 <p>Claude Code is powerful but not accessible to all. If you hit limits (free or paid), this “set it and forget it” proxy fails over across keys, providers, and models to keep you working without interruption.</p>
     `,
     image: "/projects/model-proxy/claude-code-tunnel-header.png",
-    tech: ["Python", "FastAPI", "OpenAI API", "Anthropic API"],
+    tech: [
+      "Python",
+      "FastAPI",
+      "OpenAI SDK",
+      "Anthropic SDK",
+      "Google GenAI SDK",
+    ],
     github: "https://github.com/BenItBuhner/model-proxy",
     demo: null,
   },
+  /*
   {
     id: 6,
     title: "Noetic",
@@ -101,21 +108,11 @@ const projects: Project[] = [
       "An open-source alternative to Notion, Linear, Todoist, and AI-powered assistants, unifying work management and AI tools into one seamless experience.",
     date: "2025-12-19",
     image: "/projects/noetic/noetic-header.png",
-    tech: ["Next.js", "TypeScript", "AI", "Productivity"],
+    tech: ["Next.js", "TypeScript", "Generative AI", "Agents", "Productivity"],
     github: "https://github.com/BenItBuhner/noetic",
     demo: null,
     comingSoon: true,
   },
-  /*
-  {
-    id: 6,
-    title: "Portfolio Site",
-    description:
-      "Hey! This is the site you're on right now, and its an open-source Next.js app. Feel free to check it out!",
-    tech: ["Next.js", "TypeScript", "React", "CSS Modules"],
-    github: "https://github.com/BenItBuhner/portfolio-site",
-    demo: null
-  }
   */
 ];
 
