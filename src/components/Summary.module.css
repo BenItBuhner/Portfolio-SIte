@@ -1,43 +1,42 @@
 .section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
 }
 
 .headerWrapper {
-  display: inline-grid;
-  grid-template-columns: max-content;
-  grid-template-rows: max-content;
-  line-height: 0;
-  position: relative;
+    display: inline-grid;
+    grid-template-columns: max-content;
+    grid-template-rows: max-content;
+    line-height: 0;
+    position: relative;
 }
 
 .text {
-  font-family: var(--font-geist-sans);
-  font-weight: 400;
-  line-height: normal;
-  margin-left: 0.062px;
-  margin-top: 20px;
-  position: relative;
-  color: var(--color-accent-soft);
-  font-size: 18px;
-  width: 100%;
-  max-width: 900px;
+    font-family: var(--font-geist-sans);
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 0.062px;
+    margin-top: 20px;
+    position: relative;
+    color: var(--color-accent);
+    font-size: 18px;
+    width: 100%;
+    max-width: 900px;
 }
 
 @media (max-width: 768px) {
-  .text {
-    font-size: 16px;
-    margin-top: 16px;
-  }
+    .text {
+        font-size: 16px;
+        margin-top: 16px;
+    }
 }
 
 @media (max-width: 480px) {
-  .text {
-    font-size: 15px;
-    margin-top: 12px;
-  }
+    .text {
+        font-size: 15px;
+        margin-top: 12px;
+    }
 }
-
