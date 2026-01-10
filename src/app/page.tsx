@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturedSection from "@/components/FeaturedSection";
 import RecentBlogs from "@/components/RecentBlogs";
 import AIChat from "@/components/AIChat";
+import FlipProfile from "@/components/FlipProfile";
 import styles from "./page.module.css";
 
 // Check if AI chat should be enabled via environment variable
@@ -21,16 +21,7 @@ export default function PortfolioLandingPage() {
           <div className={styles.heroLeft}>
             <div className={styles.heroContent}>
               <div className={`${styles.profileImage} animate-fade-in-up animate-delay-300`}>
-                <div className={styles.imagePlaceholder}>
-                  <Image
-                    src="/account-icon.png"
-                    alt="Bennett Buhner"
-                    width={200}
-                    height={200}
-                    className={styles.profileImg}
-                    priority
-                  />
-                </div>
+                <FlipProfile />
               </div>
               <div className={`${styles.heroText} animate-fade-in-up animate-delay-400`}>
                 <h1 className={styles.title}>Hi, I&apos;m Bennett!</h1>

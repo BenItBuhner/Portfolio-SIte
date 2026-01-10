@@ -58,20 +58,70 @@
   width: 100%;
 }
 
-.imagePlaceholder {
+.flipCard {
   width: 50%;
   aspect-ratio: 1;
+  perspective: 1000px;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Initial one-time flip that indicates the card can flip. This is triggered by adding
+   the `.initialFlip` class to the `.flipCard` container on mount via a small client
+   component. The animation flips to the back and then returns to the front. */
+.initialFlip .flipCardInner {
+  animation: initialFlip 1.6s ease-in-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: none;
+}
+
+@keyframes initialFlip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  45% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+/* Respect users' reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .initialFlip .flipCardInner {
+    animation: none;
+  }
+}
+
+.flipCardFront, .flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-avatar-surface) 0%, var(--color-avatar-surface-soft) 100%);
   border: 2px solid var(--color-border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent-muted);
-  font-size: 1.2rem;
-  font-weight: 300;
   overflow: hidden;
-  position: relative;
+}
+
+.flipCardBack {
+  transform: rotateY(180deg);
 }
 
 .profileImg {
@@ -169,7 +219,7 @@
     margin-bottom: 8px;
   }
 
-  .imagePlaceholder {
+  .flipCard {
     width: 40%;
   }
 
