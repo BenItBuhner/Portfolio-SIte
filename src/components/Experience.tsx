@@ -17,7 +17,7 @@ const EXPERIENCE_ITEMS = [
   },
   {
     title: "Developing Agents & Frameworks:",
-    text: "I have made agents such as the agent-chassis and used these for Aviate as well, and some even such as the \"Model Proxy\" has been implemented and scaled for use on a production instance that thousands of people use for Claude Code.",
+    text: "I have made agents used for Aviate, and some such as the \"Model Proxy\" has been implemented and scaled for use on a production instance that thousands of people use for Claude Code.",
   },
   {
     title: "Designing:",

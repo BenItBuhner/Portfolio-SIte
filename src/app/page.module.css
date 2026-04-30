@@ -13,32 +13,12 @@
   gap: 60px;
 }
 
-.heroWithRight {
-  justify-content: space-between;
-}
-
 .heroLeft {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 400px;
-}
-
-.heroRight {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 400px;
-  align-items: center;
-}
-
-.chatPlaceholder {
-  width: 600px;
-  height: 650px;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .heroContent {
@@ -74,8 +54,8 @@
 }
 
 /* Initial one-time flip that indicates the card can flip. This is triggered by adding
-   the `.initialFlip` class to the `.flipCard` container on mount via a small client
-   component. The animation flips to the back and then returns to the front. */
+the `.initialFlip` class to the `.flipCard` container on mount via a small client
+component. The animation flips to the back and then returns to the front. */
 .initialFlip .flipCardInner {
   animation: initialFlip 1.6s ease-in-out;
   animation-delay: 0.5s;
@@ -202,8 +182,7 @@
     justify-content: center;
   }
 
-  .heroLeft,
-  .heroRight {
+  .heroLeft {
     flex: none;
     min-height: auto;
     width: 100%;
@@ -248,8 +227,7 @@
     margin-top: 8px;
   }
 
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary, .btn-secondary {
     width: 100%;
     max-width: 280px;
   }
@@ -276,4 +254,3 @@
 }
 
 /* Featured section styles moved to FeaturedSection.module.css */
-

@@ -132,7 +132,9 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
               <div className={styles.headerImage}>
                 <div className={styles.imagePlaceholder}>
                   {blog.image ? (
-                    <img src={blog.image} alt={blog.title} />
+                    <a href={blog.image} target="_blank" rel="noopener noreferrer">
+                      <img src={blog.image} alt={blog.title} />
+                    </a>
                   ) : (
                     <span>Blog Image</span>
                   )}

@@ -64,13 +64,6 @@ export default function HamburgerMenu() {
             <div className={`${styles.overlay} ${isVisible ? styles.overlayOpen : ''}`} onClick={closeMenu} />
             <nav className={`${styles.menu} ${isVisible ? styles.menuOpen : ''}`} role="dialog" aria-modal>
               <Link
-                href="/overview"
-                className={`${styles.menuLink} ${styles.menuLinkDelay1} ${isVisible ? styles.menuLinkVisible : ''}`}
-                onClick={closeMenu}
-              >
-                Overview
-              </Link>
-              <Link
                 href="/projects"
                 className={`${styles.menuLink} ${styles.menuLinkDelay2} ${isVisible ? styles.menuLinkVisible : ''}`}
                 onClick={closeMenu}

@@ -31,16 +31,16 @@ export default function Header({ className }: { className?: string }) {
           <div className={styles.tagBackground}>
             <svg
               className={styles.tagSvg}
-              viewBox="0 0 550 53"
+              viewBox="0 0 436 53"
               preserveAspectRatio="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M30.4 0H549L519.8 52.9003H0L30.4 0Z"
+                d="M24.1 0H435.2L412.1 52.9003H0L24.1 0Z"
                 style={{ fill: "var(--color-tag-surface)" }}
               />
               <path
-                d="M547.5 0.87793L519.1 52.0225H1.76L31.4 0.87793H547.5Z"
+                d="M434.0 0.87793L411.5 52.0225H1.4L24.9 0.87793H434.0Z"
                 style={{
                   stroke: "var(--color-tag-border)",
                   fill: "none",
@@ -49,11 +49,7 @@ export default function Header({ className }: { className?: string }) {
               />
             </svg>
           </div>
-          <div className={styles.navLinks}>
-            <Link href="/overview" className="nav-link">
-              Overview
-            </Link>
-            <span className={styles.bullet}>•</span>
+              <div className={styles.navLinks}>
             <Link href="/projects" className="nav-link">
               Projects
             </Link>

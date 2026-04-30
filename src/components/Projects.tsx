@@ -14,12 +14,6 @@ const PROJECTS = [
     subItems: [],
   },
   {
-    title: "Agent Chassis:",
-    description:
-      "Developed a modular agent foundation with native MCP and local tool support. Includes pre-routed authentication, versatile state management, and more for rapid agent deployment.",
-    subItems: [],
-  },
-  {
     title: "Model Proxy & Claude Code Tunnel:",
     description:
       "Built a resilient inference gateway that offers API key, provider, and model-level fallbacks. Forked and created a custom version for using any model with Claude Code easily.",

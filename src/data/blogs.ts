@@ -13,19 +13,6 @@ export interface Blog {
 
 const blogs: Blog[] = [
   {
-    id: 1,
-    title: "How I use VS Code anywhere, even on my iPad!",
-    excerpt:
-      "Stay tuned for the full write-up—this post will cover the journey, architecture, and lessons learned once details are ready.",
-    content: "",
-    date: "2025-02-01",
-    readTime: "Coming soon",
-    tags: ["VS Code", "Mobile", "Productivity"],
-    slug: "/blog/placeholder",
-    image: "/blogs/vs-code-anywhere/how-use-vs-code-anywhere-header.png",
-    comingSoon: true,
-  },
-  {
     id: 2,
     title:
       "I made the best text correction tool out there… and it’s an AutoHotkey script",

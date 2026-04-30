@@ -134,7 +134,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.image && (
                 <div className={styles.headerImage}>
                   <div className={styles.imagePlaceholder}>
-                    <img src={project.image} alt={project.title} />
+                    <a href={project.image} target="_blank" rel="noopener noreferrer">
+                      <img src={project.image} alt={project.title} />
+                    </a>
                   </div>
                 </div>
               )}

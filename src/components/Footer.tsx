@@ -110,10 +110,6 @@ export default function Footer({ className }: { className?: string }) {
           </a>
         </div>
         <nav className={styles.nav}>
-          <Link href="/overview" className="nav-link">
-            Overview
-          </Link>
-          <span className={styles.separator}>•</span>
           <Link href="/projects" className="nav-link">
             Projects
           </Link>
